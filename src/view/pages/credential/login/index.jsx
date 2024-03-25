@@ -52,7 +52,7 @@ const LoginPage = () => {
   // This should be called when the component mounts
   useEffect(() => {
       handleAuthorizationCode();
-  }, []);
+  });
 
   if (isLoading) return <DarkLoader/>
 
@@ -74,7 +74,6 @@ const LoginPage = () => {
               <Box className={classes.loginTitle}>Login</Box>
               <Box className={classes.loginSubTitle}>Don&apos;t have an account? Please contact our <Box className={classes.link} onClick={contactAdmin}>admin team</Box></Box>
             </Box>
-
             <TextField label="Email" placeholder='Please enter the email' name='email' {...{errors, register}}/>
             <Button variant="contained" fullWidth type="submit">Login</Button>
           </Box>
