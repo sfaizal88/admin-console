@@ -9,6 +9,7 @@
 import React, {useState, useEffect} from 'react';
 import {Box, Button} from '@mui/material';
 import { useForm } from "react-hook-form";
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 // import { yupResolver } from "@hookform/resolvers/yup"
 
 // COMPONENT IMPORT
@@ -71,9 +72,9 @@ const LoginPage = () => {
             <Box className={classes.title1}>Welcome to</Box>
             <Box className={classes.title2}>AELF Admin Panel</Box>
             <Box className={classes.subTitle}>Please sign in using your Zoho self-company email ID for access. For assistance, contact support. Stay productive!</Box>
-            <Box><img src={AdminPanelIcon} width={80}/></Box>
+            <Box my={2}><img src={AdminPanelIcon} width={80}/></Box>
           </Box>
-          <Button variant="contained" fullWidth type="submit">Login using Zoho email</Button>
+          <Button className={classes.btn} startIcon={<MailOutlinedIcon/>} variant="contained" fullWidth type="submit">Login using Zoho email</Button>
         </Box>
       </Box>
       <Auth/>

@@ -34,20 +34,19 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     title1: {
-        fontSize: '18px',
+        fontSize: '16px',
         fontWeight: 600
     },
     title2: {
-        fontSize: '20px',
+        fontSize: '30px',
         fontWeight: 600,
         color: '#256dd3',
-        marginBottom: '16px'
+        marginBottom: '4px'
     },
     subTitle: {
         fontSize: '13px',
         fontWeight: 400,
         marginTop: '4px',
-        marginBottom: '16px'
     },
     loginContent: {
         flex: 1,
@@ -68,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: 'underline',
         }
     },
+    btn: {
+        textTransform: 'none !important'
+    }
 }));
   
 export default useStyles;
