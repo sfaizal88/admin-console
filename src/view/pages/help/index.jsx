@@ -41,7 +41,6 @@ const HelpPage = () => {
           Guided Video Tutorial: Dashboard
         </AccordionSummary>
         <AccordionDetails>
-          <i class="fa-solid fa-video-slash"></i>
         </AccordionDetails>
       </Accordion>
     </Container>
