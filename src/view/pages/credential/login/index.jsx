@@ -59,7 +59,7 @@ const LoginPage = () => {
   }
 
   const zohoLogin = () => {
-    const responseType = 'response_type=code';
+    const responseType = 'access_type=code';
     const clientId = `client_id=${CLIENT_ID}`;
     const redirectUri = `redirect_uri=${REDIRECT_URL}`;
     const scope = 'scope=ZohoAssist.userapi.READ';
