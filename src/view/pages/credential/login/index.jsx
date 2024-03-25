@@ -60,7 +60,7 @@ const LoginPage = () => {
 
   const zohoLogin = () => {
     const responseType = 'response_type=code';
-    const clientId = `client_id=${CLIENT_ID}`;
+    const clientId = `client_id=1000.OGM448XR5YVKYBUQYC4OVBH4781JLE`;
     const redirectUri = `redirect_uri=${REDIRECT_URL}`;
     const scope = 'scope=ZohoAssist.userapi.READ';
     // Redirect the user to Zoho's authorization URL
