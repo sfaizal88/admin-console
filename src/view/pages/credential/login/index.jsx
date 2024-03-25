@@ -87,12 +87,17 @@ const LoginPage = () => {
         redirect_uri: REDIRECT_URL,
         grant_type: 'authorization_code'
       };
-      const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
-      console.log('response: ', response.data);
-      if (response.data) {
+      try {
+        const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
         console.log('response: ', response.data);
+        if (response.data) {
+          console.log('response: ', response.data);
+        }
+      } catch (error) {
+        console.log("Error: ", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
   };
 
