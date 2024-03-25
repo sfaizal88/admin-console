@@ -11,9 +11,9 @@ import {createContext, useContext} from 'react';
 // Define initial state
 export const initialState = {
     user: {
-      token: null,
-      displayName: null,
-      email: null
+      token: localStorage.getItem('token') || null,
+      displayName: localStorage.getItem('displayName') || null,
+      email: localStorage.getItem('email') || null
     }
 };
 

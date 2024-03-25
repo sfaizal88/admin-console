@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import {Box} from '@mui/material';
 
@@ -27,9 +27,6 @@ import ProductDetailsPage from '../pages/product/components/productDetails';
 import HelpPage from '../pages/help';
 import IdleTimer from '../pages/credential/idleTimer';
 
-// CONTEXT
-import {useUser, ACTION_TYPE} from '../../contexts/userContext'
-
 // STYLE IMPORT
 import useStyles from './styles';
 
@@ -37,22 +34,6 @@ const AppRoutes = () => {
     // STYLE DECLARE
     const classes = useStyles();
 
-    // CONTEXT
-    const { dispatch } = useUser();
-
-    const setUserContext = () => {
-        const userData = {
-            token: localStorage.getItem('token'),
-            displayName: localStorage.getItem('displayName'),
-            email: localStorage.getItem('email')
-        };
-        dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-    };
-
-    useEffect(() => {
-        // setUserContext();
-    }, [])
-      
     // RENDER HTML
     return (
         <Box className={classes.app}>
