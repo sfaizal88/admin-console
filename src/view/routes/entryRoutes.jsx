@@ -10,7 +10,6 @@ import React, { Route, Routes, HashRouter } from 'react-router-dom';
 
 // PAGE 
 import LoginPage from '../pages/credential/login';
-import ZohoAuth from '../pages/credential/zohoAuth';
 
 // ROUTER IMPORT
 import AppRoutes from './appRoutes';
@@ -21,7 +20,6 @@ const EntryRoutes = () => (
   <HashRouter>
     <Routes>
       <Route path={PATH.LOGIN_PATH} element={<LoginPage />}/>
-      <Route path={PATH.ZOHO_AUTH_PATH} element={<ZohoAuth />}/>
       <Route path={PATH.OTHER_PATH} element={<AppRoutes />}/>
     </Routes>
   </HashRouter>
