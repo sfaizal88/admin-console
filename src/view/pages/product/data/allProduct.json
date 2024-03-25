@@ -1,0 +1,14 @@
+[
+    {
+        "id": "KONGHQ",
+        "title": "Konghq",
+        "imgName": "konghq.png",
+        "info": "Kong is Orchestration Microservice API Gateway. Kong provides a flexible abstraction layer that securely manages communication between clients and microservices via API.",
+        "data": [
+            {
+                "label": "API Key",
+                "value": "uj77036uxw27ru7lnygwb11ka2l28hl812tmf2pcfb5igftg2w"
+            }
+        ]
+    }
+]
