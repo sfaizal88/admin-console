@@ -97,6 +97,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             display: 'block'
         }
+    },
+    menuDisabled: {
+        color: '#bdc3c7'
     }
 }));
   
