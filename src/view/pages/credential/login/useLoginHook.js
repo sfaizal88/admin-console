@@ -20,9 +20,6 @@ import useNotification from '../../../../utils/notification';
 // API
 import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL} from '../../../../api/constants';
 
-// JSON
-import AccountDataJSON from './data/accounts.json';
-
 export function useLoginHook(setLoading) {
 
     // DECLARE NOTIFICATION AND NAVIDATE
@@ -77,10 +74,10 @@ export function useLoginHook(setLoading) {
               const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
               if (response.data) {
                 console.log('Auth details: ', response.data);
-                const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: auth}, JSONHeader);
+                const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: response.data.access_token}, JSONHeader);
                 if (accountResponse.data) {
                   console.log('Account details: ', accountResponse.data);
-                  setStorage(auth, accountResponse.data);
+                  setStorage(response.data.access_token, accountResponse.data);
                 }
               }
             } catch (error) {
