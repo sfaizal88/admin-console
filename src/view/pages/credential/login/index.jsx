@@ -73,7 +73,7 @@ const LoginPage = () => {
     const url = window.location.href;
     const queryString = url.substring(url.indexOf('?') + 1);
     const params = new URLSearchParams(queryString);
-    const code = params.get('token');
+    const code = params.get('code');
     console.log("Code: ",code);
     console.log("url: ", url);
     console.log("params: ", params);
