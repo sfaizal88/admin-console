@@ -101,7 +101,7 @@ const LoginPage = () => {
   const zohoLogin = () => {
     const responseType = 'response_type=code';
     const clientId = 'client_id=1000.EL550QWO3I79EANZ409YGYIOVT838M';
-    const redirectUri = 'redirect_uri=http://localhost:3000/zohoAuth';
+    const redirectUri = 'redirect_uri=https://sfaizal88.github.io/admin-console/zohoAuth';
     const scope = 'scope=ZohoAssist.userapi.READ';
     // Redirect the user to Zoho's authorization URL
     window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${redirectUri}&${scope}`;

@@ -39,8 +39,8 @@ const ZohoAuth = () => {
             body: new URLSearchParams({
             code: code,
             client_id: '1000.EL550QWO3I79EANZ409YGYIOVT838M',
-            client_secret: '1000.EL550QWO3I79EANZ409YGYIOVT838M',
-            redirect_uri: 'http://localhost:3000/#/dashboard',
+            client_secret: 'e9f694011af6e2684ceb25526a9cd82c6adb08bdf8',
+            redirect_uri: 'https://sfaizal88.github.io/admin-console/#/dashboard',
             grant_type: 'authorization_code'
             })
         })
