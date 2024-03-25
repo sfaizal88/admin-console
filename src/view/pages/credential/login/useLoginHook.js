@@ -6,7 +6,6 @@
  * 
  */
 // GENERIC IMPORT
-import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 // CONTEXT
@@ -24,34 +23,20 @@ import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL, JSONFo
 // JSON
 import AccountDataJSON from './data/accounts.json';
 
-export function useLoginHook(email, setLoading) {
+export function useLoginHook(setLoading) {
 
     // DECLARE NOTIFICATION AND NAVIDATE
     const setNotification = useNotification();
-    const navigate = useNavigate();
     const { dispatch } = useUser();
 
-    const isFormValid = () => {
-        if (!email.trim().length) {
-        setNotification.error("Please provide the email to login.");
-        } else {
-        return true;
-        }
-        return false;
-    };
-
-    const mockLogin = () => {
-        localStorage.setItem('email', email);
-        navigate(PATH.HOME_PATH);
-    }
-
-    const zohoLogin = () => {
-        const responseType = 'response_type=code';
-        const clientId = `client_id=${CLIENT_ID}`;
-        const redirectUri = `redirect_uri=${REDIRECT_URL}`;
-        const scope = 'scope=ZohoMail.accounts.READ';
-        // Redirect the user to Zoho's authorization URL
-        window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
+    const onSubmit = (data) => {
+      console.log(data);
+      const responseType = 'response_type=code';
+      const clientId = `client_id=${CLIENT_ID}`;
+      const redirectUri = `redirect_uri=${REDIRECT_URL}`;
+      const scope = 'scope=ZohoMail.accounts.READ';
+      // Redirect the user to Zoho's authorization URL
+      window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
     }
 
     const setStorage = (auth) => {
@@ -121,22 +106,14 @@ export function useLoginHook(email, setLoading) {
           setStorage(auth);
         }
     }
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-          // mockLogin();
-          zohoLogin();
-        }
-    };
     
     const contactAdmin = () => {
         setNotification.success("Please contact Steve.");
     }
 
   return {
-    zohoLogin,
+    onSubmit,
     handleAuthorizationCode,
-    handleKeyDown,
     contactAdmin
   }
 }

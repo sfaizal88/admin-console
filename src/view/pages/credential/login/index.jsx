@@ -7,11 +7,13 @@
  */
 // GENERIC IMPORT
 import React, {useState, useEffect} from 'react';
-import {Box, TextField, Button} from '@mui/material';
+import {Box, Button} from '@mui/material';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
 
 // COMPONENT IMPORT
 import Header from '../../common/header';
-import {DarkLoader} from '../../../atom';
+import {DarkLoader, TextField} from '../../../atom';
 
 // ROUTER IMPORT
 import Auth from '../auth';
@@ -21,6 +23,7 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 
 // HOOK
 import {useLoginHook} from './useLoginHook';
+import {schema} from './schema';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -31,11 +34,19 @@ const LoginPage = () => {
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
-  const [email, setEmail] = useState();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      email: "",
+    },
+    resolver: yupResolver(schema),
+  });
 
   // Hook
-  const {zohoLogin, handleAuthorizationCode, handleKeyDown, contactAdmin} = useLoginHook(email, setLoading);
-
+  const {onSubmit, handleAuthorizationCode, contactAdmin} = useLoginHook(setLoading);
 
   // Call the function to exchange authorization code for access token
   // This should be called when the component mounts
@@ -46,7 +57,9 @@ const LoginPage = () => {
   if (isLoading) return <DarkLoader/>
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Box className={classes.onlyDesktop}><Header/></Box>
       <Box className={classes.container}>
         <Box className={classes.loginContainer}>
@@ -61,15 +74,14 @@ const LoginPage = () => {
               <Box className={classes.loginTitle}>Login</Box>
               <Box className={classes.loginSubTitle}>Don&apos;t have an account? Please contact our <Box className={classes.link} onClick={contactAdmin}>admin team</Box></Box>
             </Box>
-            <TextField label="Email" variant="outlined" 
-            fullWidth placeholder='Please enter the email' value={email} size='small'
-            onChange={(event) => setEmail(event.target.value)} onKeyDown={handleKeyDown}/>
-            <Button variant="contained" fullWidth onClick={zohoLogin}>Login</Button>
+
+            <TextField label="Email" placeholder='Please enter the email' name='email' {...{errors, register}}/>
+            <Button variant="contained" fullWidth type="submit">Login</Button>
           </Box>
         </Box>
       </Box>
       <Auth/>
-    </>
+    </form>
   )
 }
 
