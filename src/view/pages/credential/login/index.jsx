@@ -44,8 +44,8 @@ const LoginPage = () => {
   const [email, setEmail] = useState();
 
   const isFormValid = () => {
-    if (!token.trim().length) {
-      setNotification.error("Please provide the token to login.");
+    if (!email.trim().length) {
+      setNotification.error("Please provide the email to login.");
     } else {
       return true;
     }
@@ -53,8 +53,8 @@ const LoginPage = () => {
   };
 
   const mockLogin = () => {
-    console.log("token: ", token)
-    localStorage.setItem('token', token);
+    console.log("email: ", email)
+    localStorage.setItem('email', email);
     navigate(PATH.HOME_PATH);
   }
 
@@ -129,9 +129,9 @@ const LoginPage = () => {
               <Box className={classes.loginSubTitle}>Don&apos;t have an account? Please contact our <Box className={classes.link} onClick={contactAdmin}>admin team</Box></Box>
             </Box>
             <TextField label="Email" variant="outlined" 
-            fullWidth placeholder='Please enter the email' value={token} size='small'
-            onChange={(event) => setToken(event.target.value)} onKeyDown={handleKeyDown}/>
-            <Button variant="contained" fullWidth onClick={onLogin}>Login</Button>
+            fullWidth placeholder='Please enter the email' value={email} size='small'
+            onChange={(event) => setEmail(event.target.value)} onKeyDown={handleKeyDown}/>
+            <Button variant="contained" fullWidth onClick={zohoLogin}>Login</Button>
           </Box>
         </Box>
       </Box>
