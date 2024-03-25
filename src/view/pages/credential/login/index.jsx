@@ -13,7 +13,7 @@ import axios from 'axios';
 
 // COMPONENT IMPORT
 import Header from '../../common/header';
-import {Loader} from '../../../atom';
+import {DarkLoader} from '../../../atom';
 
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
@@ -26,7 +26,7 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 import useNotification from '../../../../utils/notification';
 
 // API
-import {LOGIN_API, JSONFormHeader, CLIENT_ID, CLIENT_SECRET, REDIRECT_URL} from '../../../../api/constants';
+import {LOGIN_API, JSONHeader, CLIENT_ID, CLIENT_SECRET, REDIRECT_URL} from '../../../../api/constants';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -78,6 +78,7 @@ const LoginPage = () => {
     console.log("url: ", url);
     console.log("params: ", params);
     if (code) {
+      setLoading(true);
       // Make a POST request to exchange the code for an access token
       const param = {
         code: code,
@@ -86,11 +87,12 @@ const LoginPage = () => {
         redirect_uri: REDIRECT_URL,
         grant_type: 'authorization_code'
       };
-      const response = await axios.post(LOGIN_API, {...param}, JSONFormHeader);
+      const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
       console.log('response: ', response.data);
       if (response.data) {
         console.log('response: ', response.data);
       }
+      setLoading(false);
     }
   };
 
@@ -111,9 +113,10 @@ const LoginPage = () => {
       handleAuthorizationCode();
   }, []);
 
+  if (isLoading) return <DarkLoader/>
+
   return (
     <>
-      { isLoading && <Loader/>} 
       <Box className={classes.onlyDesktop}><Header/></Box>
       <Box className={classes.container}>
         <Box className={classes.loginContainer}>
