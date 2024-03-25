@@ -6,9 +6,10 @@
  * 
  */
 // GENERIC IMPORT
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { Route, Routes, useHistory } from 'react-router-dom';
 import {Box} from '@mui/material';
+
 
 // ROUTER IMPORT
 import * as PATH from './constants';
@@ -33,6 +34,11 @@ import useStyles from './styles';
 const AppRoutes = () => {
     // STYLE DECLARE
     const classes = useStyles();
+
+    useEffect(() => {
+        // Remove query parameters from the URL
+        window.location.hash = '';
+      }, []);
 
     // RENDER HTML
     return (
