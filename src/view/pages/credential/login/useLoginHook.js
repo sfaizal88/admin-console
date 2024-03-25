@@ -6,7 +6,8 @@
  * 
  */
 // GENERIC IMPORT
-import {useNavigate, useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {useHistory} from 'react-router';
 import axios from 'axios';
 
 // CONTEXT
