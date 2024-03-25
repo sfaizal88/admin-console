@@ -34,6 +34,7 @@ const LoginPage = () => {
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -51,7 +52,10 @@ const LoginPage = () => {
   // Call the function to exchange authorization code for access token
   // This should be called when the component mounts
   useEffect(() => {
+    if (!formSubmitted) {
+      setFormSubmitted(true);
       handleAuthorizationCode();
+    }
   }, []);
 
   if (isLoading) return <DarkLoader/>
