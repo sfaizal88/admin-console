@@ -9,20 +9,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems:'center',
     },
-    loginContainer: {
-        display: 'flex',
-        width: 700,
-        gap: '40px',
-        marginTop: '-100px',
-        [theme.breakpoints.down('sm')]: {
-            width: '300px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            textAlign: 'center',
-            flexDirection: 'column',
-            marginTop: '-30%',
-        }
-    },
     loginBox: {
         width: 300,
         border: '1px solid #fff',
@@ -32,8 +18,13 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
+        textAlign: 'center',
         [theme.breakpoints.down('sm')]: {
-            width: 'auto',
+            width: '300px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            textAlign: 'center',
+            marginTop: '-30%',
         }
     },
     onlyDesktop: {
@@ -41,14 +32,21 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         }
     },
-    loginTitle: {
+    title1: {
         fontSize: '18px',
         fontWeight: 600
     },
-    loginSubTitle: {
+    title2: {
+        fontSize: '20px',
+        fontWeight: 600,
+        color: '#256dd3',
+        marginBottom: '16px'
+    },
+    subTitle: {
         fontSize: '13px',
         fontWeight: 400,
-        marginTop: '4px'
+        marginTop: '4px',
+        marginBottom: '16px'
     },
     loginContent: {
         flex: 1,
@@ -59,29 +57,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             display: 'block',
         }
-    },
-    title: {
-        fontSize: '40px',
-        fontWeight: 500,
-        display: 'inline-flex',
-        alignItems: 'center',
-        paddingBottom: '16px',
-        borderBottom: '1px solid #417dd3',
-        whiteSpace: 'nowrap',
-        fontFamily: "'Caveat', cursive",
-    },
-    subtitle: {
-        borderTop: '1px solid #0055cc',
-        paddingTop: '16px',
-        fontSize: '20px',
-        fontWeight: 600,
-        marginBottom: '24px',
-        lineHeight: '24px'
-    },
-    info: {
-        fontSize: '13px',
-        fontWeight: 400,
-        lineHeight: '21px'
     },
     link: {
         cursor: 'pointer',

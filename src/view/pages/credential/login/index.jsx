@@ -9,21 +9,21 @@
 import React, {useState, useEffect} from 'react';
 import {Box, Button} from '@mui/material';
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup"
+// import { yupResolver } from "@hookform/resolvers/yup"
 
 // COMPONENT IMPORT
 import Header from '../../common/header';
-import {DarkLoader, TextField} from '../../../atom';
+import {DarkLoader} from '../../../atom';
 
 // ROUTER IMPORT
 import Auth from '../auth';
 
 // ICON IMPORT
-import LogoIcon from '../../../../assets/img/aelf-logo.png';
+import AdminPanelIcon from '../../../../assets/img/admin-panel.png';
 
 // HOOK
 import {useLoginHook} from './useLoginHook';
-import {schema} from './schema';
+// import {schema} from './schema';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -40,10 +40,10 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors }
   } = useForm({
-    defaultValues: {
+    /* defaultValues: {
       email: "",
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema), */
   });
 
   // Hook
@@ -66,21 +66,14 @@ const LoginPage = () => {
     >
       <Box className={classes.onlyDesktop}><Header/></Box>
       <Box className={classes.container}>
-        <Box className={classes.loginContainer}>
-          <Box className={classes.loginContent}>
-            <Box className={classes.title}>
-            <img src={LogoIcon} alt="Logo" height={30}/>&nbsp;Admin Console</Box>
-            <Box className={classes.subtitle}>We make digital product that drive you to stand out.</Box>
-            <Box className={classes.info}>We write code to create NFT by interacting with artificial intelligence using different traits.</Box>
+        <Box className={classes.loginBox}>
+          <Box>
+            <Box className={classes.title1}>Welcome to</Box>
+            <Box className={classes.title2}>AELF Admin Panel</Box>
+            <Box className={classes.subTitle}>Please sign in using your Zoho self-company email ID for access. For assistance, contact support. Stay productive!</Box>
+            <Box><img src={AdminPanelIcon} width={80}/></Box>
           </Box>
-          <Box className={classes.loginBox}>
-            <Box>
-              <Box className={classes.loginTitle}>Login</Box>
-              <Box className={classes.loginSubTitle}>Login using your aelf email account.</Box>
-            </Box>
-            <TextField label="Email" placeholder='Please enter the email' name='email' {...{errors, register}}/>
-            <Button variant="contained" fullWidth type="submit">Login using Zoho email</Button>
-          </Box>
+          <Button variant="contained" fullWidth type="submit">Login using Zoho email</Button>
         </Box>
       </Box>
       <Auth/>
@@ -89,3 +82,5 @@ const LoginPage = () => {
 }
 
 export default LoginPage;
+
+// <TextField label="Email" placeholder='Please enter the email' name='email' {...{errors, register}}/>
