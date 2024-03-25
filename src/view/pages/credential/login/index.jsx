@@ -82,10 +82,11 @@ const LoginPage = () => {
       // Make a POST request to exchange the code for an access token
       const param = {
         code: code,
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
+        // client_id: CLIENT_ID,
+        // client_secret: CLIENT_SECRET,
         redirect_uri: REDIRECT_URL,
-        grant_type: 'authorization_code'
+        grant_type: 'authorization_code',
+        scope: 'ZohoMail.accounts.READ'
       };
       try {
         const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
