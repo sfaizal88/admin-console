@@ -99,7 +99,6 @@ const LoginPage = () => {
         }
       } catch (error) {
         console.log("Error: ", error);
-      } finally {
         setLoading(false);
       }
     }
@@ -125,8 +124,7 @@ const LoginPage = () => {
       localStorage.setItem('displayName', response.data.data[0].displayName);
       localStorage.setItem('token', auth);
       localStorage.setItem('email', response.data.data[0].incomingUserName);
-    } finally {
-      setLoading(false);
+      navigate(PATH.HOME_PATH);
     }
   }
 
