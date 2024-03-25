@@ -72,10 +72,10 @@ export function useLoginHook(setLoading) {
             };
             try {
               const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
-              if (response.data?.data) {
+              if (response.data) {
                 console.log('Auth details: ', response.data);
                 const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: response.data.access_token}, JSONHeader);
-                if (accountResponse.data) {
+                if (accountResponse.data?.data) {
                   console.log('Account details: ', accountResponse.data);
                   setStorage(response.data.access_token, accountResponse.data);
                 }
