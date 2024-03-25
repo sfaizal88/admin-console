@@ -39,20 +39,18 @@ export function useLoginHook(setLoading) {
       window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
     }
 
-    const setStorage = (auth) => {
-        const response = {
-            data: AccountDataJSON
-        }
+    const setStorage = (auth, responseData) => {
         // SETUP DISPLAY NAME AND AUTH
-        localStorage.setItem('displayName', response.data.data[0].displayName);
+        localStorage.setItem('displayName', responseData.data[0].displayName);
         localStorage.setItem('token', auth);
-        localStorage.setItem('email', response.data.data[0].incomingUserName);
+        localStorage.setItem('email', responseData.data[0].incomingUserName);
         const userData = {
             token: auth,
-            displayName: response.data.data[0].displayName,
-            email: response.data.data[0].incomingUserName
+            displayName: responseData.data[0].displayName,
+            email: responseData.data[0].incomingUserName
         };
         dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
+        console.log(`${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`);
         window.location.href = `${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`;
     }
 
@@ -76,36 +74,22 @@ export function useLoginHook(setLoading) {
                 scope: 'ZohoMail.accounts.READ'
             };
             try {
-                const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
-                if (response.data) {
-                console.log('response: ', response.data);
-                getAccountDetails(response.data.access_token)
+              const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
+              if (response.data) {
+                console.log('Auth details: ', response.data);
+                const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: auth}, JSONHeader);
+                if (accountResponse.data) {
+                  console.log('Account details: ', accountResponse.data);
+                  setStorage(auth, accountResponse.data);
                 }
+              }
             } catch (error) {
-                console.log("Error: ", error);
-                // setLoading(false);
-                // setStorage('abc');
+              console.log("Error: ", error);
+            } finally {
+              setLoading(false);
             }
         }
     };
-
-    const getAccountDetails = async (auth) => {
-        try {
-          const param = {
-            authToken: auth
-          }
-          const response = await axios.post(ALL_ACCOUNTS_API, {...param}, JSONHeader);
-          if (response.data) {
-            console.log('response accounts: ', response.data);
-          }
-        } catch (error) {
-          console.log("Error: ", error);
-          // setLoading(false);
-          setStorage(auth);
-        } finally {
-          setLoading(false);
-        }
-    }
     
     const contactAdmin = () => {
         setNotification.success("Please contact Steve.");
