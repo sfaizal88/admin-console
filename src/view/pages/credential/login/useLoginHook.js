@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useHistory} from 'react-router-dom';
 import axios from 'axios';
 
 // CONTEXT
@@ -28,6 +28,7 @@ export function useLoginHook(email, setLoading) {
 
     // DECLARE NOTIFICATION AND NAVIDATE
     const setNotification = useNotification();
+    const history = useHistory();
     const navigate = useNavigate();
     const { dispatch } = useUser();
 
@@ -69,7 +70,8 @@ export function useLoginHook(email, setLoading) {
         };
         dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
         console.log("window.location.pathname: ", window.location.pathname);
-        navigate(window.location.pathname + PATH.HOME_PATH);
+        // navigate(window.location.pathname + PATH.HOME_PATH);
+        history.push(PATH.HOME_PATH);
     }
 
     // After successful authentication, Zoho will redirect back to your website with an authorization code
