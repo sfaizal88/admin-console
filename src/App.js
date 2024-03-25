@@ -18,6 +18,7 @@ import EntryRoutes from './view/routes/entryRoutes';
 
 // CONTEXT IMPORT
 import {NotificationContext} from './contexts/notificationContext';
+import {UserContext, reducer, initialState} from './contexts/userContext';
 
 // UTILS
 import {NotificationType} from './utils/constants';
@@ -28,6 +29,7 @@ import { menuInitialState, menuContext as MenuContext, menuReducer } from './con
 function App() {
   // STATE DECLARE
   const [state, dispatch] = useReducer(menuReducer, menuInitialState);
+  const [userState, userDispatch] = useReducer(reducer, initialState);
   const [notification, setNotification] = useState({
     type: NotificationType.success,
     message: '',
@@ -39,12 +41,14 @@ function App() {
   
   return (
     <ThemeProvider theme={theme}>
-      <NotificationContext.Provider value={value}>        
-        <MenuContext.Provider value={{ state, dispatch }}>
-          <EntryRoutes/>
-          <Notification {...value.notification} setNotification={setNotification}/>
-        </MenuContext.Provider>
-      </NotificationContext.Provider>
+      <UserContext.Provider value={{ state: userState, dispatch: userDispatch }}>
+        <NotificationContext.Provider value={value}>        
+          <MenuContext.Provider value={{ state, dispatch }}>
+            <EntryRoutes/>
+            <Notification {...value.notification} setNotification={setNotification}/>
+          </MenuContext.Provider>
+        </NotificationContext.Provider>
+      </UserContext.Provider>
     </ThemeProvider>
   );
 }

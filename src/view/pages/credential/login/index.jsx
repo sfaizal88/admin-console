@@ -25,6 +25,9 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 // UTILS
 import useNotification from '../../../../utils/notification';
 
+// CONTEXT
+import { useUser, SET_USER } from '../../../../contexts/userContext'; 
+
 // JSON
 import AccountDataJSON from './data/accounts.json';
 
@@ -41,6 +44,7 @@ const LoginPage = () => {
   // DECLARE NOTIFICATION AND NAVIDATE
   const setNotification = useNotification();
   const navigate = useNavigate();
+  const { dispatch } = useUser();
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
@@ -124,6 +128,12 @@ const LoginPage = () => {
       localStorage.setItem('displayName', response.data.data[0].displayName);
       localStorage.setItem('token', auth);
       localStorage.setItem('email', response.data.data[0].incomingUserName);
+      const userData = {
+        token: response.data.data[0].displayName,
+        displayName: auth,
+        email: response.data.data[0].incomingUserName
+      };
+      dispatch({ type: SET_USER, payload: userData });
       navigate(PATH.HOME_PATH);
     }
   }
