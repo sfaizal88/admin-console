@@ -30,7 +30,7 @@ const Header = () => {
     // STATE VARIABLE
     const [isLogoutOpen, setLogoutOpen] = useState(false);
     const { state: userState } = useUser();
-    console.log('Header: ', state);
+    console.log('Header: ', userState);
 
     // LOCAL VARIABLE
     const today = moment();
