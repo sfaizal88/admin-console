@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems:'center',
     },
     loginBox: {
+        marginTop: '-120px',
         width: 300,
         border: '1px solid #fff',
         padding: '24px',
