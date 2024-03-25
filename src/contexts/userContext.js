@@ -25,6 +25,8 @@ export const ACTION_TYPE = {
 
 // Define reducer function
 export const reducer = (state, action) => {
+    console.log("state: ", state);
+    console.log("action: ", action);
     switch (action.type) {
       case ACTION_TYPE.SET_USER:
         return { ...state, user: action.payload };
