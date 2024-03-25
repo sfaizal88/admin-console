@@ -26,7 +26,7 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 import useNotification from '../../../../utils/notification';
 
 // API
-import {LOGIN_API, JSONFormHeader} from '../../../../api/constants';
+import {LOGIN_API, JSONFormHeader, CLIENT_ID, CLIENT_SECRET, REDIRECT_URL} from '../../../../api/constants';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -60,8 +60,8 @@ const LoginPage = () => {
 
   const zohoLogin = () => {
     const responseType = 'response_type=code';
-    const clientId = 'client_id=1000.EL550QWO3I79EANZ409YGYIOVT838M';
-    const redirectUri = 'redirect_uri=https://sfaizal88.github.io/admin-console/';
+    const clientId = `client_id=${CLIENT_ID}`;
+    const redirectUri = `redirect_uri=${REDIRECT_URL}`;
     const scope = 'scope=ZohoAssist.userapi.READ';
     // Redirect the user to Zoho's authorization URL
     window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${redirectUri}&${scope}`;
@@ -81,9 +81,9 @@ const LoginPage = () => {
       // Make a POST request to exchange the code for an access token
       const param = {
         code: code,
-        client_id: '1000.EL550QWO3I79EANZ409YGYIOVT838M',
-        client_secret: 'e9f694011af6e2684ceb25526a9cd82c6adb08bdf8',
-        redirect_uri: 'https://sfaizal88.github.io/admin-console/',
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
+        redirect_uri: REDIRECT_URL,
         grant_type: 'authorization_code'
       };
       const response = await axios.post(LOGIN_API, {...param}, JSONFormHeader);
