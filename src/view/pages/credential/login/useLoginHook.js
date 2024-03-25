@@ -18,7 +18,7 @@ import * as PATH from '../../../routes/constants';
 import useNotification from '../../../../utils/notification';
 
 // API
-import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL, JSONFormAuthHeader} from '../../../../api/constants';
+import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL} from '../../../../api/constants';
 
 // JSON
 import AccountDataJSON from './data/accounts.json';
@@ -91,12 +91,10 @@ export function useLoginHook(setLoading) {
 
     const getAccountDetails = async (auth) => {
         try {
-          const response = await axios.get(ALL_ACCOUNTS_API, {
-            headers: {
-              ...JSONFormAuthHeader.headers,
-              Authorization: `Zoho-oauthtoken ${auth}`
-            }
-          });
+          const param = {
+            authToken: auth
+          }
+          const response = await axios.get(ALL_ACCOUNTS_API, {...param}, JSONHeader);
           if (response.data) {
             console.log('response accounts: ', response.data);
           }
