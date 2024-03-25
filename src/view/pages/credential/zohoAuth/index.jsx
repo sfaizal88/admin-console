@@ -23,9 +23,10 @@ const ZohoAuth = () => {
     // After successful authentication, Zoho will redirect back to your website with an authorization code
     // You need to handle this code and exchange it for an access token
     const handleAuthorizationCode = () => {
-        const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.hash.slice(1));
-        const code = '1000.87dffd2f88f64a7ec2578121b23917ac.7a4d0e7928fcd90e61538232aabbbe78'; // params.get('code');
+        const url = window.location.href;
+        const queryString = url.substring(url.indexOf('?') + 1);
+        const params = new URLSearchParams(queryString);
+        const code = params.get('code');
         console.log("Code: ",code);
         console.log("url: ", url);
         console.log("params: ", params);
