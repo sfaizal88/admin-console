@@ -14,12 +14,18 @@ import { useUser, ACTION_TYPE } from '../../../../contexts/userContext';
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
 
+// UTILS IMPORT 
+import useNotification from '../../../../utils/notification';
+
 // API
 import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL} from '../../../../api/constants';
 
 export function useLoginHook(setLoading) {
 
-    // DECLARE NOTIFICATION AND NAVIDATE
+    // DECLARE NOTIFICATION
+    const setNotification = useNotification();
+
+    // DECLARE  NAVIDATE
     const { dispatch } = useUser();
 
     const onSubmit = (data) => {
@@ -66,13 +72,15 @@ export function useLoginHook(setLoading) {
             };
             try {
               const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
-              if (response.data) {
+              if (response.data?.data) {
                 console.log('Auth details: ', response.data);
                 const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: response.data.access_token}, JSONHeader);
                 if (accountResponse.data) {
                   console.log('Account details: ', accountResponse.data);
                   setStorage(response.data.access_token, accountResponse.data);
                 }
+              } else {
+                setNotification.error();
               }
             } catch (error) {
               console.log("Error: ", error);
