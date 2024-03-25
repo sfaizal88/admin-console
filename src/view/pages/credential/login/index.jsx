@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Box, TextField, Button} from '@mui/material';
 import {useNavigate, useLocation} from 'react-router-dom';
 import axios from 'axios';
@@ -136,7 +136,7 @@ const LoginPage = () => {
     .then(data => {
         // Handle the response, save the access token, etc.
         console.log('Access Token:', data.access_token);
-        setIsAuthenticated(true);
+        // setIsAuthenticated(true);
     })
     .catch(error => {
         console.error('Error:', error);
