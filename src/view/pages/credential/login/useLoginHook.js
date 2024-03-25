@@ -29,7 +29,6 @@ export function useLoginHook(setLoading) {
     const { dispatch } = useUser();
 
     const onSubmit = (data) => {
-      console.log(data);
       const responseType = 'response_type=code';
       const clientId = `client_id=${CLIENT_ID}`;
       const redirectUri = `redirect_uri=${REDIRECT_URL}`;
@@ -93,7 +92,7 @@ export function useLoginHook(setLoading) {
               console.log("Error: ", error);
               setNotification.error();
             } finally {
-              setLoading(false);
+              setTimeout(() => setLoading(false), 2000);
             }
         }
     };
