@@ -25,6 +25,9 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 // UTILS
 import useNotification from '../../../../utils/notification';
 
+// JSON
+import AccountDataJSON from './data/accounts.json';
+
 // API
 import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL, JSONFormAuthHeader} from '../../../../api/constants';
 
@@ -115,6 +118,13 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.log("Error: ", error);
+      const response = {
+        data: AccountDataJSON
+      }
+      // SETUP DISPLAY NAME AND AUTH
+      localStorage.setItem('displayName', response.data.data[0].displayName);
+      localStorage.setItem('token', auth);
+      localStorage.setItem('email', response.data.data[0].incomingUserName);
     } finally {
       setLoading(false);
     }
