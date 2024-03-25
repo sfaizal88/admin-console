@@ -68,6 +68,7 @@ export function useLoginHook(email, setLoading) {
             email: response.data.data[0].incomingUserName
         };
         dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
+        console.log("window.location.pathname: ", window.location.pathname);
         navigate(window.location.pathname + PATH.HOME_PATH);
     }
 
