@@ -50,7 +50,7 @@ const AppRoutes = () => {
     };
 
     useEffect(() => {
-        setUserContext();
+        // setUserContext();
     }, [])
       
     // RENDER HTML
