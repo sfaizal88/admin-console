@@ -82,13 +82,13 @@ const Menu = () => {
                     <Box className={classes.menu}>
                         <ul className={classes.menuList}>
                             {mainMenuItems.map((item) => (
-                                <li key={item.id} onClick={() => onMenuPress(item.link)} className={clsx(classes.menuItem, item.link === selectedMenu && classes.menuActive)}>{item.icon}{item.label}</li>
+                                <li key={item.id} onClick={() => !item.disabled && onMenuPress(item.link)} className={clsx(classes.menuItem,!item.disabled && item.link === selectedMenu && classes.menuActive, item.disabled && classes.menuDisabled)}>{item.icon}{item.label}</li>
                             ))}
                         </ul>
                         <Box className={clsx(classes.menuHeader, classes.onlyMobile)}>Setting</Box>
                         <ul className={clsx(classes.menuList, classes.onlyMobile)}>
                             {settingsMenuItems.map((item) => (
-                                <li key={item.id} onClick={() => !item.disabled && onMenuPress(item.link)} className={clsx(classes.menuItem,  item.link === selectedMenu && classes.menuActive, item.disabled  && classes.menuDisabled)}>{item.icon}{item.label}</li>
+                                <li key={item.id} onClick={() => onMenuPress(item.link)} className={clsx(classes.menuItem, item.link === selectedMenu && classes.menuActive)}>{item.icon}{item.label}</li>
                             ))}
                         </ul>
                     </Box>

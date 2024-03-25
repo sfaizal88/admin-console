@@ -99,7 +99,12 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     menuDisabled: {
-        color: '#bdc3c7'
+        color: '#bdc3c7',
+        '&:hover': {
+            color: '#bdc3c7',
+            background: '#256dd3',
+            cursor: 'not-allowed'
+        },
     }
 }));
   
