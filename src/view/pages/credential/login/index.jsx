@@ -26,7 +26,7 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 import useNotification from '../../../../utils/notification';
 
 // CONTEXT
-import { useUser, SET_USER } from '../../../../contexts/userContext'; 
+import { useUser, ACTION_TYPE } from '../../../../contexts/userContext'; 
 
 // JSON
 import AccountDataJSON from './data/accounts.json';
@@ -133,7 +133,7 @@ const LoginPage = () => {
         displayName: auth,
         email: response.data.data[0].incomingUserName
       };
-      dispatch({ type: SET_USER, payload: userData });
+      dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
       navigate(PATH.HOME_PATH);
     }
   }

@@ -18,15 +18,17 @@ export const initialState = {
 };
 
 // Define action types
-const SET_USER = 'SET_USER';
-const CLEAR_USER = 'CLEAR_USER';
+export const ACTION_TYPE = {
+    SET_USER: 'SET_USER',
+    CLEAR_USER: 'CLEAR_USER'
+}
 
 // Define reducer function
 export const reducer = (state, action) => {
     switch (action.type) {
-      case SET_USER:
+      case ACTION_TYPE.SET_USER:
         return { ...state, user: action.payload };
-      case CLEAR_USER:
+      case ACTION_TYPE.CLEAR_USER:
         return { ...state, user: initialState.user };
       default:
         return state;
