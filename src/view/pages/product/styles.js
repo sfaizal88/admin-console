@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
       width: '400px',
       boxSizing: 'border-box',
       border: '1px solid transparent',
+      display: 'inline-block',
       '&:hover': {
         cursor: 'pointer',
         border: '1px solid #ecf0f1'
@@ -36,6 +37,22 @@ const useStyles = makeStyles(() => ({
       display: 'flex',
       justifyContent: 'flex-end',
       padding: '4px 0 0 0'
+    },
+    cardDisabled: {
+      position: 'relative'
+    },
+    overlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(0, 0, 0, 0.2)',
+      borderRadius: '8px',
+      '&:hover': {
+        cursor: 'not-allowed',
+        border: '1px solid #transparent'
+      }
     }
 }));
   

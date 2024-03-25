@@ -9,6 +9,15 @@
                 "label": "API Key",
                 "value": "uj77036uxw27ru7lnygwb11ka2l28hl812tmf2pcfb5igftg2w"
             }
-        ]
+        ],
+        "disabled": false
+    },
+    {
+        "id": "GCP",
+        "title": "Google cloud project",
+        "imgName": "gcp.png",
+        "info": "Google Cloud Platform, offered by Google, is a suite of cloud computing services that provides a series of modular cloud services including computing, data storage, data analytics.",
+        "data": [],
+        "disabled": true
     }
 ]

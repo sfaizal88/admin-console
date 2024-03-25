@@ -6,6 +6,7 @@
  * 
  */
 // GENERIC IMPORT
+import clsx from 'clsx';
 import React, {useState, useEffect} from 'react';
 import {Box} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
@@ -47,7 +48,8 @@ const ProductPage = () => {
       <PageHeader title='Product listing' subtitle="Explore our products and find what you need on our product listing page." {...{isLoading}}></PageHeader>
       <Container>
       {allProducts.map(item => (
-        <Box key={item.id} className={classes.card} onClick={() => navigateToProductDetails(item.id)}>
+        <Box key={item.id} className={clsx(classes.card, item.disabled && classes.cardDisabled)} onClick={() => !item.disabled && navigateToProductDetails(item.id)}>
+          {item.disabled && <Box className={classes.overlay}></Box>}
           <Box className={classes.cardTitleContainer}>
             <img src={require(`../../../assets/img/${item.imgName}`)} className={classes.cardLogo}/>
             <Box>
