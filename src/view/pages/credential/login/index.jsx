@@ -59,12 +59,12 @@ const LoginPage = () => {
   }
 
   const zohoLogin = () => {
-    const responseType = 'access_type=code';
+    const responseType = 'response_type=code';
     const clientId = `client_id=${CLIENT_ID}`;
     const redirectUri = `redirect_uri=${REDIRECT_URL}`;
     const scope = 'scope=ZohoAssist.userapi.READ';
     // Redirect the user to Zoho's authorization URL
-    window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${redirectUri}&${scope}`;
+    window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
   }
 
   // After successful authentication, Zoho will redirect back to your website with an authorization code
