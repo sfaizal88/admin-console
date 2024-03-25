@@ -99,7 +99,7 @@ const LoginPage = () => {
   }
 
   const zohoLogin = () => {
-    const responseType = 'response_type=code';
+    const responseType = 'response_type=token';
     const clientId = 'client_id=1000.EL550QWO3I79EANZ409YGYIOVT838M';
     const redirectUri = 'redirect_uri=https://sfaizal88.github.io/admin-console/';
     const scope = 'scope=ZohoAssist.userapi.READ';
@@ -113,7 +113,7 @@ const LoginPage = () => {
     const url = window.location.href;
     const queryString = url.substring(url.indexOf('?') + 1);
     const params = new URLSearchParams(queryString);
-    const code = params.get('code');
+    const code = params.get('token');
     console.log("Code: ",code);
     console.log("url: ", url);
     console.log("params: ", params);
