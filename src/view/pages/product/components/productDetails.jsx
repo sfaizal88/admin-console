@@ -11,18 +11,13 @@ import {Box} from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 // COMPONENT IMPORT
-import {Container, FromField, MaskData} from '../../../atom';
+import {Container, FromField} from '../../../atom';
 import PageHeader from '../../common/header/pageHeader';
 
 // DATA IMPORT
 import allProducts from '../data/allProduct.json';
 
-// STYLE IMPORT
-import useStyles from '../styles';
-
 const ProductDetailsPage = () => {
-  // DECLARE STYLE
-  const classes = useStyles();
 
   // PARAMS
   const { productId } = useParams();

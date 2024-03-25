@@ -28,7 +28,6 @@ const useStyles = makeStyles(() => ({
         color: '#5b5d71',
         display: 'flex',
         alignItems: 'center',
-        flex: 1
     },
     control: {
         cursor: 'pointer',

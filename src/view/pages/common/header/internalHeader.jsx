@@ -8,8 +8,7 @@
  */
 // GENERIC IMPORT
 import React, {useState} from 'react';
-import {Chip, Box} from '@mui/material';
-import moment from 'moment';
+import {Box} from '@mui/material';
 
 // GENERIC COMPONENT
 import Logout from '../../credential/logout';
@@ -30,14 +29,10 @@ const Header = () => {
     // STATE VARIABLE
     const [isLogoutOpen, setLogoutOpen] = useState(false);
     const { state: userState } = useUser();
-    console.log('Header: ', userState);
-
-    // LOCAL VARIABLE
-    const today = moment();
 
     return (
         <header className={classes.internalHeader}>
-            <Box className={classes.user}><img src={userImage} width={24}/>Welcome, {userState.user.displayName}</Box>
+            <Box className={classes.user}><img src={userImage} width={24} alt='User profile'/>Welcome, {userState.user.displayName}</Box>
             <Box className={classes.logout} onClick={() => setLogoutOpen(true)}><i class="fa-solid fa-right-from-bracket"></i> Logout</Box>
             {isLogoutOpen && <Logout onClose={() => setLogoutOpen(false)}/>}
         </header>

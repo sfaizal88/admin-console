@@ -43,7 +43,7 @@ const Auth = () => {
         }
         setLoading(false);
     }
-    useEffect(() => checkAuth(), []);
+    useEffect(() => checkAuth(), [checkAuth]);
     if (isLoading) return <DarkLoader/>;
 }
 

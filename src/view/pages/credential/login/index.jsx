@@ -52,7 +52,7 @@ const LoginPage = () => {
   // This should be called when the component mounts
   useEffect(() => {
       handleAuthorizationCode();
-  }, []);
+  }, [handleAuthorizationCode]);
 
   if (isLoading) return <DarkLoader/>
 

@@ -11,9 +11,8 @@ import {Box} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
 // COMPONENT IMPORT
-import {Empty, Container, Link} from '../../atom';
+import {Container, Link} from '../../atom';
 import PageHeader from '../common/header/pageHeader';
-import * as PATH from '../../routes/constants';
 
 // UTILS IMPORT
 import {truncateString} from '../../../utils';
