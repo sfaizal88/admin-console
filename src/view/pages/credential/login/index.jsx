@@ -26,7 +26,7 @@ import LogoIcon from '../../../../assets/img/aelf-logo.png';
 import useNotification from '../../../../utils/notification';
 
 // API
-import {LOGIN_API, JSONHeader, CLIENT_ID, CLIENT_SECRET, REDIRECT_URL} from '../../../../api/constants';
+import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL, JSONFormAuthHeader} from '../../../../api/constants';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -90,9 +90,9 @@ const LoginPage = () => {
       };
       try {
         const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
-        console.log('response: ', response.data);
         if (response.data) {
           console.log('response: ', response.data);
+          getAccountDetails(response.data.access_token)
         }
       } catch (error) {
         console.log("Error: ", error);
@@ -101,6 +101,24 @@ const LoginPage = () => {
       }
     }
   };
+
+  const getAccountDetails = async (auth) => {
+    try {
+      const response = await axios.get(ALL_ACCOUNTS_API, {
+        headers: {
+          ...JSONFormAuthHeader.headers,
+          Authorization: `Zoho-oauthtoken ${auth}`
+        }
+      });
+      if (response.data) {
+        console.log('response accounts: ', response.data);
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {

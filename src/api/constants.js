@@ -2,16 +2,18 @@ export const EXPERIMENT_SUBMIT_API = "/experiments/start-task";
 export const EXPERIMENT_LIST_API = "/experiments/get-list";
 export const UPDATE_EXPERIMENT_API = "/image/generate";
 export const GET_EXPERIMENT_BY_ID_API = "/experiments/result/";
-export const LOGIN_API = "https://0d29-154-91-47-139.ngrok-free.app/zoho/auth";// https://accounts.zoho.com/oauth/v2/token
+export const LOGIN_API = "https://0d29-154-91-47-139.ngrok-free.app/zoho/auth";
+export const ALL_ACCOUNTS_API = "https://mail.zoho.com/api/accounts";// https://accounts.zoho.com/oauth/v2/token
 
 export const JSONHeader = {
     headers: {
         'Content-Type': 'application/json',
     },
 }
-export const JSONFormHeader = {
+export const JSONFormAuthHeader = {
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     },
 }
 // Server based
