@@ -129,8 +129,8 @@ const LoginPage = () => {
       localStorage.setItem('token', auth);
       localStorage.setItem('email', response.data.data[0].incomingUserName);
       const userData = {
-        token: response.data.data[0].displayName,
-        displayName: auth,
+        token: auth,
+        displayName: response.data.data[0].displayName,
         email: response.data.data[0].incomingUserName
       };
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
