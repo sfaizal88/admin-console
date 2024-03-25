@@ -62,7 +62,7 @@ const LoginPage = () => {
     const responseType = 'response_type=code';
     const clientId = `client_id=${CLIENT_ID}`;
     const redirectUri = `redirect_uri=${REDIRECT_URL}`;
-    const scope = 'scope=ZohoAssist.userapi.READ';
+    const scope = 'scope=ZohoMail.accounts.READ';
     // Redirect the user to Zoho's authorization URL
     window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
   }
