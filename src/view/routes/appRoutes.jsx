@@ -6,8 +6,8 @@
  * 
  */
 // GENERIC IMPORT
-import React, {useEffect} from 'react';
-import { Route, Routes, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import {Box} from '@mui/material';
 
 
@@ -27,6 +27,7 @@ import SettingsPage from '../pages/settings';
 import ProductDetailsPage from '../pages/product/components/productDetails';
 import HelpPage from '../pages/help';
 import IdleTimer from '../pages/credential/idleTimer';
+import Auth from '../pages/credential/auth';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -34,12 +35,6 @@ import useStyles from './styles';
 const AppRoutes = () => {
     // STYLE DECLARE
     const classes = useStyles();
-
-    useEffect(() => {
-        // Remove query parameters from the URL
-        window.location.hash = '';
-      }, []);
-
     // RENDER HTML
     return (
         <Box className={classes.app}>
@@ -61,6 +56,7 @@ const AppRoutes = () => {
                 </Box>
             </Box>
             <IdleTimer/>
+            <Auth/>
         </Box>
     );
 };
