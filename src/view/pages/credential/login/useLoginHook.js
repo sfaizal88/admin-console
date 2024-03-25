@@ -77,8 +77,12 @@ export function useLoginHook(setLoading) {
                 const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: response.data.access_token}, JSONHeader);
                 console.log('Account details: ', accountResponse);
                 if (accountResponse.data) {
+                  if (accountResponse.data?.data?.[0].accountName === 'aelf') {
                   console.log('Account details: ', accountResponse.data);
                   setStorage(response.data.access_token, accountResponse.data);
+                  } else {
+                    setNotification.error('Only AELF account allowed');
+                  }
                 } else {
                   setNotification.error();
                 }
