@@ -94,7 +94,7 @@ export function useLoginHook(setLoading) {
           const param = {
             authToken: auth
           }
-          const response = await axios.get(ALL_ACCOUNTS_API, {...param}, JSONHeader);
+          const response = await axios.post(ALL_ACCOUNTS_API, {...param}, JSONHeader);
           if (response.data) {
             console.log('response accounts: ', response.data);
           }
@@ -102,6 +102,8 @@ export function useLoginHook(setLoading) {
           console.log("Error: ", error);
           // setLoading(false);
           setStorage(auth);
+        } finally {
+          setLoading(false);
         }
     }
     
