@@ -59,7 +59,7 @@ const LoginPage = () => {
   }
 
   const zohoLogin = () => {
-    const responseType = 'response_type=token';
+    const responseType = 'response_type=code';
     const clientId = 'client_id=1000.EL550QWO3I79EANZ409YGYIOVT838M';
     const redirectUri = 'redirect_uri=https://sfaizal88.github.io/admin-console/';
     const scope = 'scope=ZohoAssist.userapi.READ';
