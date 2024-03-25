@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     loginBox: {
-        width: 400,
+        width: 300,
         border: '1px solid #fff',
         padding: '24px',
         borderRadius: '8px',

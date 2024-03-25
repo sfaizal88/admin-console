@@ -14,16 +14,12 @@ import { useUser, ACTION_TYPE } from '../../../../contexts/userContext';
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
 
-// UTILS
-import useNotification from '../../../../utils/notification';
-
 // API
 import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL} from '../../../../api/constants';
 
 export function useLoginHook(setLoading) {
 
     // DECLARE NOTIFICATION AND NAVIDATE
-    const setNotification = useNotification();
     const { dispatch } = useUser();
 
     const onSubmit = (data) => {
@@ -64,8 +60,6 @@ export function useLoginHook(setLoading) {
             // Make a POST request to exchange the code for an access token
             const param = {
                 code: code,
-                // client_id: CLIENT_ID,
-                // client_secret: CLIENT_SECRET,
                 redirect_uri: REDIRECT_URL,
                 grant_type: 'authorization_code',
                 scope: 'ZohoMail.accounts.READ'
@@ -87,14 +81,9 @@ export function useLoginHook(setLoading) {
             }
         }
     };
-    
-    const contactAdmin = () => {
-        setNotification.success("Please contact Steve.");
-    }
 
   return {
     onSubmit,
     handleAuthorizationCode,
-    contactAdmin
   }
 }
