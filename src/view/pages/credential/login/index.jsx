@@ -79,7 +79,7 @@ const LoginPage = () => {
               <Box className={classes.loginSubTitle}>Login using your aelf email account.</Box>
             </Box>
             <TextField label="Email" placeholder='Please enter the email' name='email' {...{errors, register}}/>
-            <Button variant="contained" fullWidth type="submit">Login</Button>
+            <Button variant="contained" fullWidth type="submit">Login using Zoho email</Button>
           </Box>
         </Box>
       </Box>
