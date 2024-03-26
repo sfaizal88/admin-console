@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
         // borderRadius: '8px',
         // boxShadow: '1px 1px 2px #d0d0d0',
         [theme.breakpoints.down('sm')]: {
-            padding: '20px 20px',
+            padding: '8px 0',
         }
     },
   }));

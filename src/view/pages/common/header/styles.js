@@ -18,9 +18,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 1px 0 #eeeeee',
     [theme.breakpoints.down('sm')]: {
         textAlign: 'center',
-        marginBottom: '36px',
+        padding: '16px 8px',
     }
-
   },
   pageHeaderTitle: {
     fontSize: '20px',
@@ -44,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 1px 2px #d2d2d2',
     zIndex: 2,
     borderBottom: '1px solid #ececec',
+    [theme.breakpoints.down('sm')]: {
+        marginTop: '10px',
+    }
   },
   logout: {
     display: 'inline-flex',
@@ -52,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     gap: '8px',
     cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+        display: 'none',
+    }
   },
   user: {
     display: 'inline-flex',

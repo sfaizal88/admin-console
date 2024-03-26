@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     card: {
       borderRadius: '8px',
       background: '#fff',
@@ -13,6 +13,9 @@ const useStyles = makeStyles(() => ({
       '&:hover': {
         cursor: 'pointer',
         border: '1px solid #ecf0f1'
+      },
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
       }
     },
     cardTitleContainer: {

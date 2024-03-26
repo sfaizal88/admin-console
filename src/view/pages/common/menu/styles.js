@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             zIndex: 2,
             position: 'fixed',
-            top: '46px',
+            top: '57px',
             left: 0,
             right: 0,
             bottom: 0,
