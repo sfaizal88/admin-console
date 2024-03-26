@@ -14,6 +14,8 @@ export default function useRedirect() {
     const navigate = useNavigate();
 
     const gotoPage = (link) => {
+        window.history.replaceState({}, document.title, window.location.pathname);
+        window.location.hash = '';
         navigate(link);
     };
 
