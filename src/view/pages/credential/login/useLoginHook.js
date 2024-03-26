@@ -7,6 +7,7 @@
  */
 // GENERIC IMPORT
 import axios from 'axios';
+import {useState} from 'react';
 
 // CONTEXT
 import { useUser, ACTION_TYPE } from '../../../../contexts/userContext'; 
@@ -20,7 +21,10 @@ import useNotification from '../../../../utils/notification';
 // API
 import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL} from '../../../../api/constants';
 
-export function useLoginHook(setLoading) {
+// JSON DATA
+import AccountData from './data/accounts.json';
+
+export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal, userAccount) {
 
     // DECLARE NOTIFICATION
     const setNotification = useNotification();
@@ -28,6 +32,9 @@ export function useLoginHook(setLoading) {
     // DECLARE  NAVIDATE
     const { dispatch } = useUser();
 
+    // DECLARE STATE
+    const [accessToken, setAccessToken] = useState();
+    
     const onSubmit = (data) => {
       const responseType = 'response_type=code';
       const clientId = `client_id=${CLIENT_ID}`;
@@ -37,19 +44,43 @@ export function useLoginHook(setLoading) {
       window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
     }
 
-    const setStorage = (auth, responseData) => {
-        // SETUP DISPLAY NAME AND AUTH
-        localStorage.setItem('displayName', responseData.data[0].displayName);
-        localStorage.setItem('token', auth);
-        localStorage.setItem('email', responseData.data[0].incomingUserName);
-        const userData = {
-            token: auth,
-            displayName: responseData.data[0].displayName,
-            email: responseData.data[0].incomingUserName
-        };
-        dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-        console.log(`${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`);
-        window.location.href = `${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`;
+    const mockLogin = () => {
+      const responseData = AccountData.data[0];
+      const auth = '123456qwerty';
+      // SETUP DISPLAY NAME AND AUTH
+      localStorage.setItem('displayName', responseData.displayName);
+      localStorage.setItem('token', auth);
+      localStorage.setItem('email', responseData.incomingUserName);
+      const userData = {
+          token: auth,
+          displayName: responseData.displayName,
+          email: responseData.incomingUserName
+      };
+      dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
+      window.location.href = `${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`;
+    }
+
+    const denyPermission = () => {
+      localStorage.clear();
+      dispatch({ type: ACTION_TYPE.CLEAR_USER, payload: {} });
+      window.location.href = `${window.location.href.split('?')[0]}`;
+      setUserAccount({});
+      setOpenPermissionModal(false);
+    }
+
+    const allowPermission = () => {
+      // SETUP DISPLAY NAME AND AUTH
+      localStorage.setItem('displayName', userAccount.displayName);
+      localStorage.setItem('token', accessToken);
+      localStorage.setItem('email', userAccount.incomingUserName);
+      const userData = {
+          token: accessToken,
+          displayName: userAccount.displayName,
+          email: userAccount.incomingUserName
+      };
+      dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
+      console.log(`${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`);
+      window.location.href = `${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`;
     }
 
     // After successful authentication, Zoho will redirect back to your website with an authorization code
@@ -78,7 +109,9 @@ export function useLoginHook(setLoading) {
                 if (accountResponse.data) {
                   if (accountResponse.data?.data?.[0].accountName === 'aelf') {
                   console.log('Account details: ', accountResponse.data);
-                  setStorage(response.data.access_token, accountResponse.data);
+                  setUserAccount(accountResponse.data.data[0]);
+                  setOpenPermissionModal(true);
+                  setAccessToken(response.data.access_token);
                   } else {
                     setNotification.error('Only AELF account allowed');
                   }
@@ -100,5 +133,8 @@ export function useLoginHook(setLoading) {
   return {
     onSubmit,
     handleAuthorizationCode,
+    mockLogin,
+    allowPermission,
+    denyPermission
   }
 }

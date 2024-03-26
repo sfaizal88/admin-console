@@ -48,7 +48,9 @@ const IdleTimer = () => {
 
   const onPrompt = () => {
     setState('Prompted');
-    setOpen(true);
+    if (!open) {
+      setOpen(true);
+    }
   }
 
   const { getRemainingTime, activate } = useIdleTimer({
