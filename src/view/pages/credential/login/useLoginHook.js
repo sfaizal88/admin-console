@@ -67,6 +67,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
       dispatch({ type: ACTION_TYPE.CLEAR_USER, payload: {} });
       setUserAccount({});
       setOpenPermissionModal(false);
+      navigate(PATH.LOGIN_PATH);
     }
 
     const allowPermission = () => {
