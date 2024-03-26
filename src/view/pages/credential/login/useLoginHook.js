@@ -8,10 +8,12 @@
 // GENERIC IMPORT
 import axios from 'axios';
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 
 // CONTEXT
 import { useUser, ACTION_TYPE } from '../../../../contexts/userContext'; 
+
+// HOOKS
+import { useNavigate } from '../../../../hooks/useNavigate'; 
 
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
@@ -37,7 +39,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
     const [accessToken, setAccessToken] = useState();
 
     // NAVBAR
-    const navigate = useNavigate();
+    const gotoPage = useNavigate();
     
     const onSubmit = (data) => {
       const responseType = 'response_type=code';
@@ -67,7 +69,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
       dispatch({ type: ACTION_TYPE.CLEAR_USER, payload: {} });
       setUserAccount({});
       setOpenPermissionModal(false);
-      navigate(PATH.LOGIN_PATH);
+      gotoPage(PATH.LOGIN_PATH);
     }
 
     const allowPermission = () => {
@@ -81,7 +83,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
           email: userAccount.incomingUserName
       };
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-      navigate(PATH.HOME_PATH);
+      gotoPage(PATH.HOME_PATH);
     }
 
     // After successful authentication, Zoho will redirect back to your website with an authorization code

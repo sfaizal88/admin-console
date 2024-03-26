@@ -7,7 +7,7 @@
  */
 // GENERIC IMPORT
 import React, {useState, useEffect} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 // COMPONENT IMPORT
 import {DarkLoader} from '../../../atom';
@@ -15,13 +15,16 @@ import {DarkLoader} from '../../../atom';
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
 
+// HOOK
+import useNavigate from '../../../../hooks/useNavigate'; 
+
 const Auth = () => {
     // LOCAL STATE
     const [isLoading, setLoading] = useState(false);
 
     // NAVBAR
     const location = useLocation();
-    const navigate = useNavigate();
+    const gotoPage = useNavigate();
     const currentPath = location.pathname;
     
     // LOCAL VARIABLE
@@ -37,12 +40,12 @@ const Auth = () => {
         // IF USER HAVE TOKEN AND TRY TO VISIT LOGIN SCREEN
         if (token) {
             if (nonTokenPath.includes(currentPath)) {
-                navigate(PATH.HOME_PATH);
+                gotoPage(PATH.HOME_PATH);
             }
         } else {
             // IF USER DONT HAVE TOKEN AND TRY TO VISIT AFTER LOGIN SCREEN
             if (!nonTokenPath.includes(currentPath)) {
-                navigate(PATH.LOGIN_PATH);
+                gotoPage(PATH.LOGIN_PATH);
             }
         }
         setLoading(false);
