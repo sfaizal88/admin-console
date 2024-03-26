@@ -8,6 +8,7 @@
 // GENERIC IMPORT
 import axios from 'axios';
 import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 // CONTEXT
 import { useUser, ACTION_TYPE } from '../../../../contexts/userContext'; 
@@ -34,6 +35,9 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
 
     // DECLARE STATE
     const [accessToken, setAccessToken] = useState();
+
+    // NAVBAR
+    const navigate = useNavigate();
     
     const onSubmit = (data) => {
       const responseType = 'response_type=code';
@@ -47,23 +51,20 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
     const mockLogin = () => {
       const responseData = AccountData.data[0];
       const auth = '123456qwerty';
-      // SETUP DISPLAY NAME AND AUTH
-      localStorage.setItem('displayName', responseData.displayName);
-      localStorage.setItem('token', auth);
-      localStorage.setItem('email', responseData.incomingUserName);
       const userData = {
           token: auth,
           displayName: responseData.displayName,
           email: responseData.incomingUserName
       };
+      setUserAccount(responseData);
+      setOpenPermissionModal(true);
+      setAccessToken(auth);
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-      window.location.href = `${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`;
     }
 
     const denyPermission = () => {
       localStorage.clear();
       dispatch({ type: ACTION_TYPE.CLEAR_USER, payload: {} });
-      window.location.href = `${window.location.href.split('?')[0]}`;
       setUserAccount({});
       setOpenPermissionModal(false);
     }
@@ -79,8 +80,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
           email: userAccount.incomingUserName
       };
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-      console.log(`${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`);
-      window.location.href = `${window.location.href.split('?')[0]}/#${PATH.HOME_PATH}`;
+      navigate(PATH.HOME_PATH);
     }
 
     // After successful authentication, Zoho will redirect back to your website with an authorization code

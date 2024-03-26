@@ -23,7 +23,7 @@ const Logo = (props) => {
       <img src={LogoIcon}  alt="Logo" height={25}/>
       <Box className={classes.logoName}>Admin panel</Box>
       <Box className={classes.mobileMenuIcon} onClick={props.toggleMenu}>
-        {props.showMenu ? <i class="fa-solid fa-xmark"></i> : <i class="fa-solid fa-bars"></i>}
+        {props.showMenu ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-bars"></i>}
       </Box>
     </Box>
   )

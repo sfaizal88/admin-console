@@ -25,7 +25,7 @@ const LogoutPage = (props) => {
       yesLabel='Logout'
       onClickNo={props.onClose}
       onClickYes={onLogout}
-      icon={<i class="fa-solid fa-right-from-bracket"></i>}
+      icon={<i className="fa-solid fa-right-from-bracket"></i>}
     />
   )
 }

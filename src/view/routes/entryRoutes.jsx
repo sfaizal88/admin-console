@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import React, { Route, Routes, HashRouter } from 'react-router-dom';
+import React, { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 // PAGE 
 import LoginPage from '../pages/credential/login';
@@ -17,12 +17,12 @@ import * as PATH from './constants';
 
 // ENTRY ROUTER VARIABLE DECLARE
 const EntryRoutes = () => (
-  <HashRouter>
+  <BrowserRouter>
     <Routes>
       <Route path={PATH.LOGIN_PATH} element={<LoginPage />}/>
       <Route path={PATH.OTHER_PATH} element={<AppRoutes />}/>
     </Routes>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 // EXPORT COMPONENT

@@ -1,16 +1,19 @@
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     modal: {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 300,
+        width: 550,
         background: '#fff',
-        padding: '48px 32px 20px 32px',
+        padding: '20px 16px 20px 16px',
         borderRadius: '8px',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('sm')]: {
+            width: 300,
+        }
     },
     icon: {
         fontSize: '48px',
@@ -28,6 +31,11 @@ const useStyles = makeStyles(() => ({
         background: '#fff',
         gap: '12px',
         marginTop: '16px'
+    },
+    btn: {
+        [theme.breakpoints.down('sm')]: {
+            flex: 1,
+        }
     },
     modalSubtitle: {
         padding: '8px 15px',

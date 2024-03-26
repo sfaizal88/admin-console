@@ -82,15 +82,15 @@ const LoginPage = () => {
       <Auth/>
       {isOpenPermissionModal && <ConfirmModal
       title='Permission Request'
-      content={`You've successfully logged in using your faizal.a@aelf.io zoho account. 
+      content={<><Box mb={1}>You've successfully logged in using your <strong>{userAccount.mailboxAddress}</strong> zoho account. 
       We'd like to request your permission to access basic information from your Zoho account. 
-      We will use this information solely to enhance your experience on our website and provide personalized services. 
-      Please note that we respect your privacy, and your information will be handled securely and in accordance with our privacy policy.
-      If you're comfortable granting us permission, please click the "Proceed" button below. If not, you can choose to 'log off' from here.`}
+      We will use this information solely to enhance your experience on our website and provide personalized services. </Box>
+      <Box>Please note that we respect your privacy, and your information will be handled securely and in accordance with our privacy policy.
+      If you're comfortable granting us permission, please click the "Proceed" button below. If not, you can choose to 'log off' from here.</Box></>}
       yesLabel='Proceed'
       noLabel='Log off'
-      onClose={denyPermission}
-      onConfirm={allowPermission}
+      onClickNo={denyPermission}
+      onClickYes={allowPermission}
       />}
     </form>
   )

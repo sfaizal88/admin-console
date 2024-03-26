@@ -33,7 +33,7 @@ const Header = () => {
     return (
         <header className={classes.internalHeader}>
             <Box className={classes.user}><img src={userImage} width={24} alt='User profile'/>Welcome, {userState.user.displayName}</Box>
-            <Box className={classes.logout} onClick={() => setLogoutOpen(true)}><i class="fa-solid fa-right-from-bracket"></i> Logout</Box>
+            <Box className={classes.logout} onClick={() => setLogoutOpen(true)}><i className="fa-solid fa-right-from-bracket"></i> Logout</Box>
             {isLogoutOpen && <Logout onClose={() => setLogoutOpen(false)}/>}
         </header>
     )

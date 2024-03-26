@@ -32,14 +32,14 @@ const ConfirmModal = (props) => {
   return (
     <Modal open>
       <Box className={classes.modal}>
-        <Box className={classes.icon}>{icon || <i class="fa-solid fa-triangle-exclamation"></i>}</Box>
+        <Box className={classes.icon}>{icon || <i className="fa-solid fa-triangle-exclamation"></i>}</Box>
         <Box className={classes.modalTitle}>{title}</Box>
         <Box className={classes.modalSubtitle}>
           {content}
         </Box>
         <Box className={classes.modalFooter}>
-          <Button variant="outlined" onClick={onClickNo} fullWidth>{noLabel}</Button>
-          <Button variant="contained" onClick={onClickYes} fullWidth>{yesLabel}</Button>
+          <Button variant="outlined" onClick={onClickNo} className={classes.btn} fullWidth>{noLabel}</Button>
+          <Button variant="contained" onClick={onClickYes} className={classes.btn} fullWidth>{yesLabel}</Button>
         </Box>
       </Box>
     </Modal>
