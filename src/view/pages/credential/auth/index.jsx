@@ -16,7 +16,7 @@ import {DarkLoader} from '../../../atom';
 import * as PATH from '../../../routes/constants';
 
 // HOOK
-import useNavigate from '../../../../hooks/useNavigate'; 
+import useRedirect from '../../../../hooks/useRedirect'; 
 
 const Auth = () => {
     // LOCAL STATE
@@ -24,7 +24,7 @@ const Auth = () => {
 
     // NAVBAR
     const location = useLocation();
-    const gotoPage = useNavigate();
+    const {gotoPage} = useRedirect();
     const currentPath = location.pathname;
     
     // LOCAL VARIABLE

@@ -13,7 +13,7 @@ import {useState} from 'react';
 import { useUser, ACTION_TYPE } from '../../../../contexts/userContext'; 
 
 // HOOKS
-import { useNavigate } from '../../../../hooks/useNavigate'; 
+import useRedirect from '../../../../hooks/useRedirect'; 
 
 // ROUTER IMPORT
 import * as PATH from '../../../routes/constants';
@@ -39,7 +39,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
     const [accessToken, setAccessToken] = useState();
 
     // NAVBAR
-    const gotoPage = useNavigate();
+    const {gotoPage} = useRedirect();
     
     const onSubmit = (data) => {
       const responseType = 'response_type=code';

@@ -7,15 +7,15 @@
  */
 // GENERIC IMPORT
 import React from 'react';
-import {useNavigate as useMuiNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export default function useNavigate() {
+export default function useRedirect() {
     // NAVBAR
-    const navigate = useMuiNavigate();
+    const navigate = useNavigate();
 
     const gotoPage = (link) => {
         navigate(link);
     };
 
-    return gotoPage
+    return {gotoPage}
 }

@@ -12,12 +12,12 @@ import * as PATH from '../../../routes/constants';
 import { useUser, ACTION_TYPE } from '../../../../contexts/userContext'; 
 
 // HOOK
-import useNavigate from '../../../../hooks/useNavigate'; 
+import useRedirect from '../../../../hooks/useRedirect'; 
 
 export function useLogoutHook() {
 
   // NAVBAR
-  const gotoPage = useNavigate();
+  const {gotoPage} = useRedirect();
   const { dispatch } = useUser();
 
   const onLogout = () => {
