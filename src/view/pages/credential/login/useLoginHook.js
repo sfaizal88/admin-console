@@ -80,7 +80,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
           email: userAccount.incomingUserName
       };
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-      navigate(PATH.HOME_PATH);
+      window.location.href = `${window.location.href.split('?')[0]}/${PATH.HOME_PATH}`;
     }
 
     // After successful authentication, Zoho will redirect back to your website with an authorization code
