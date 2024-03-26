@@ -9,7 +9,7 @@
 import React from 'react';
 import {useNavigate as useMuiNavigate} from 'react-router-dom';
 
-export function useNavigate() {
+export default function useNavigate() {
     // NAVBAR
     const navigate = useMuiNavigate();
 
