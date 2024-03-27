@@ -13,7 +13,6 @@ import ReactJson from 'react-json-view';
 
 // OTHER IMPORT
 import {BAR_STYLE_BY_METHOD, METHOD_STYLE, CONTAINER_STYLE_BY_METHOD, REQUEST_TYPE} from './constants';
-import {JSONHeader} from '../../../../../api/constants';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -40,7 +39,14 @@ const APIDataType = (props) => {
     props.setLoading(true);
     try {
       const param = JSON.parse(requestBody);
-      const response = await axios.post(apiURL, {...param}, JSONHeader);
+      const response = await axios.post(
+        apiURL, 
+        {...param},
+        {
+          headers: {
+          'Content-Type': requestContentType,
+        }
+      });
       if (response.data) {
         setOutput(JSON.stringify({
           "TransactionId": "string",
