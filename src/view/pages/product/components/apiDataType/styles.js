@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
       }
     },
     headContainer: {
-      padding: '2px',
+      padding: '6px',
       borderRadius: '4px',
       display: 'flex',
       flex: 1,

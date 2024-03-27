@@ -7,7 +7,7 @@
  */
 // GENERIC IMPORT
 import React, {useState, useEffect} from 'react';
-import {Accordion, AccordionSummary, AccordionDetails} from '@mui/material';
+import {Accordion, AccordionSummary, AccordionDetails, List, ListItem} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // COMPONENT IMPORT
@@ -38,9 +38,17 @@ const HelpPage = () => {
           id="panel1-header"
           className={classes.title}
         >
-          Guided Video Tutorial: Dashboard
+          In Chrome, you can adjust settings to allow mixed content by following these steps:
         </AccordionSummary>
         <AccordionDetails>
+        <List>
+          <ListItem><i className="fa-solid fa-check"></i>&nbsp;&nbsp;Open Chrome and go to the webpage where mixed content is being blocked.</ListItem>
+          <ListItem><i className="fa-solid fa-check"></i>&nbsp;&nbsp;Click on the lock icon 🔒 next to the website's address in the address bar. This will open the Site Information menu.</ListItem>
+          <ListItem><i className="fa-solid fa-check"></i>&nbsp;&nbsp;In the Site Information menu, find the "Site settings" option and click on it.</ListItem>
+          <ListItem><i className="fa-solid fa-check"></i>&nbsp;&nbsp;This will open the Site settings page. Scroll down to find the "Insecure content" section.</ListItem>
+          <ListItem><i className="fa-solid fa-check"></i>&nbsp;&nbsp;In the "Insecure content" section, you'll see an option labeled "Allow". Toggle this option to enable it. This will allow mixed content to be loaded on the current website.</ListItem>
+          <ListItem><i className="fa-solid fa-check"></i>&nbsp;&nbsp;After toggling the "Allow" option, you may need to refresh the page for the changes to take effect.</ListItem>
+        </List>
         </AccordionDetails>
       </Accordion>
     </Container>

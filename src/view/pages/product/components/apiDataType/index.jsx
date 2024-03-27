@@ -8,7 +8,7 @@
 // GENERIC IMPORT
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Box, Button, Select, MenuItem} from '@mui/material';
+import {Box, Button, Select, MenuItem, Chip} from '@mui/material';
 import ReactJson from 'react-json-view';
 
 // OTHER IMPORT
@@ -75,7 +75,7 @@ const APIDataType = (props) => {
       <Box className={classes.headContainer} style={BAR_STYLE_BY_METHOD[method]} onClick={() => setOpen((preValue) => !preValue)}>
         <Box className={classes.method} style={METHOD_STYLE[method]}>{method}</Box>
         <Box className={classes.url}>{url}</Box>
-        <Box className={classes.info}>{info}</Box>
+        <Box className={classes.info}>{info} <Chip label={host} size='small' color="primary" /></Box>
         <Box className={classes.arrow}>{isOpen ? <i className="fa-solid fa-angle-down"></i> : <i className="fa-solid fa-angle-up"></i>}</Box>
       </Box>
       {isOpen && <Box className={classes.detailsContainer}>
