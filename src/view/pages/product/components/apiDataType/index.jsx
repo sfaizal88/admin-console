@@ -46,7 +46,7 @@ const APIDataType = (props) => {
         {
           headers: {
           'Content-Type': requestContentType,
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': 'https://sfaizal88.github.io'
         }
       });
       if (response.data) {
