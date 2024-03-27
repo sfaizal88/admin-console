@@ -63,6 +63,7 @@ const APIDataType = (props) => {
       }
     } catch (error) {
       console.log("Error occured: ", error);
+      setOutput(JSON.stringify(error));
     } finally {
       props.setLoading(false);
     }
