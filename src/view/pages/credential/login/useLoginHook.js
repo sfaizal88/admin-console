@@ -82,6 +82,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
           displayName: userAccount.displayName,
           email: userAccount.incomingUserName
       };
+      setOpenPermissionModal(false);
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
       gotoPage(PATH.HOME_PATH);
     }
