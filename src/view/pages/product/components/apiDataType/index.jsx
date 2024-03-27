@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {Box, Button, Select, MenuItem, Chip} from '@mui/material';
 import ReactJson from 'react-json-view';
+import {useUser} from '../../../../../contexts/userContext';
 
 // OTHER IMPORT
 import {BAR_STYLE_BY_METHOD, METHOD_STYLE, CONTAINER_STYLE_BY_METHOD, REQUEST_TYPE} from './constants';
@@ -20,6 +21,7 @@ import useStyles from './styles';
 const APIDataType = (props) => {
   // DECLARE STYLE
   const classes = useStyles();
+  const { state: userState } = useUser();
 
   // LOCAL VARIABLE
   let {method, host, url, info, requestBody, responseBody} = props.data;
@@ -30,9 +32,7 @@ const APIDataType = (props) => {
   const [requestContentType, setRequestContentType] = useState(REQUEST_TYPE[0]);
 
   const onEditRequestData = (dataObject) => {
-    console.log(dataObject);
     requestBody = dataObject.updated_src;
-    console.log(requestBody);
   }
 
   const onExecute = async () => {
@@ -40,28 +40,20 @@ const APIDataType = (props) => {
     props.setLoading(true);
     try {
       const param = JSON.parse(requestBody);
+      console.log("Display name: ", userState.user.displayName);
+      const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
       const response = await axios.post(
         apiURL, 
         {...param},
         {
           headers: {
           'Content-Type': requestContentType,
-          'Access-Control-Allow-Origin': 'https://sfaizal88.github.io'
+          'Access-Control-Allow-Origin': 'https://sfaizal88.github.io',
+          'Authorization': `Basic ${auth}`
         }
       });
       if (response.data) {
-        setOutput(JSON.stringify({
-          "TransactionId": "string",
-          "Transaction": {
-            "From": "string",
-            "To": "string",
-            "RefBlockNumber": 0,
-            "RefBlockPrefix": "string",
-            "MethodName": "string",
-            "Params": "string",
-            "Signature": "string"
-          }
-        }));
+        setOutput(JSON.stringify(response.data));
       }
     } catch (error) {
       console.log("Error occured: ", error);
