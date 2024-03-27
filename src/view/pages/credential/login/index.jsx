@@ -44,7 +44,7 @@ const LoginPage = () => {
   } = useForm({});
 
   // Hook
-  const {onSubmit, handleAuthorizationCode, mockLogin, allowPermission, denyPermission} = useLoginHook(
+  const {onSubmit, handleAuthorizationCode, allowPermission, denyPermission} = useLoginHook(
     setLoading, 
     setUserAccount, 
     setOpenPermissionModal, 
@@ -56,7 +56,6 @@ const LoginPage = () => {
   useEffect(() => {
     if (!formSubmitted) {
       setFormSubmitted(true);
-      // mockLogin();
       handleAuthorizationCode();
     }
   }, []);

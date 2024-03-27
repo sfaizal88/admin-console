@@ -24,9 +24,6 @@ import useNotification from '../../../../utils/notification';
 // API
 import {LOGIN_API, JSONHeader, CLIENT_ID, ALL_ACCOUNTS_API, REDIRECT_URL} from '../../../../api/constants';
 
-// JSON DATA
-import AccountData from './data/accounts.json';
-
 export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal, userAccount) {
 
     // DECLARE NOTIFICATION
@@ -50,7 +47,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
       window.location.href = `https://accounts.zoho.com/oauth/v2/auth?${responseType}&${clientId}&${scope}&${redirectUri}`;
     }
 
-    const mockLogin = () => {
+    /* const mockLogin = () => {
       const responseData = AccountData.data[0];
       const auth = '123456qwerty';
       const userData = {
@@ -62,7 +59,7 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
       setOpenPermissionModal(true);
       setAccessToken(auth);
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
-    }
+    } */
 
     const denyPermission = () => {
       localStorage.clear();
@@ -133,7 +130,6 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
   return {
     onSubmit,
     handleAuthorizationCode,
-    mockLogin,
     allowPermission,
     denyPermission
   }
