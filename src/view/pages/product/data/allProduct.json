@@ -6,8 +6,10 @@
         "info": "Kong is Orchestration Microservice API Gateway. Kong provides a flexible abstraction layer that securely manages communication between clients and microservices via API.",
         "data": [
             {
+                "id": 1,
                 "label": "API Key",
-                "value": "uj77036uxw27ru7lnygwb11ka2l28hl812tmf2pcfb5igftg2w"
+                "value": "uj77036uxw27ru7lnygwb11ka2l28hl812tmf2pcfb5igftg2w",
+                "type": "DATA"
             }
         ],
         "disabled": false
@@ -19,5 +21,24 @@
         "info": "Google Cloud Platform, offered by Google, is a suite of cloud computing services that provides a series of modular cloud services including computing, data storage, data analytics.",
         "data": [],
         "disabled": true
+    },
+    {
+        "id": "IMAGEGENERATION",
+        "title": "Image Generation",
+        "imgName": "image-generation.png",
+        "info": "Image generation refers to the process of creating images using api call.",
+        "data": [
+            {
+                "id": 1,
+                "type": "API",
+                "method": "POST",
+                "host": "http://34.173.184.152:8000",
+                "url": "/kong/image/generate",
+                "info": "Generate image using param.",
+                "requestBody": "{\"newAttributes\":[{\"traitType\":\"mouth\",\"value\":\"wideopen\"}],\"baseImage\":{\"image\":\"\",\"attributes\":[{\"traitType\":\"hat\",\"value\":\"fancycap\"}]},\"numImages\":1}",
+                "responseBody": "{}"
+            }
+        ],
+        "disabled": false
     }
 ]

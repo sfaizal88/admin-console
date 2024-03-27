@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
       boxSizing: 'border-box',
       border: '1px solid transparent',
       display: 'inline-block',
+      height: '137px',
+      verticalAlign: 'top',
+      position: 'relative',
       '&:hover': {
         cursor: 'pointer',
         border: '1px solid #ecf0f1'
@@ -39,7 +42,11 @@ const useStyles = makeStyles((theme) => ({
     cardFooter: {
       display: 'flex',
       justifyContent: 'flex-end',
-      padding: '4px 0 0 0'
+      padding: '4px 0 0 0',
+      position: 'absolute',
+      bottom: '16px',
+      left: 0,
+      right: '16px'
     },
     cardDisabled: {
       position: 'relative'

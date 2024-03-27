@@ -11,8 +11,13 @@ import {Box} from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 // COMPONENT IMPORT
-import {Container, FromField} from '../../../atom';
+import {Container} from '../../../atom';
 import PageHeader from '../../common/header/pageHeader';
+import {DATA_TYPE} from '../constants';
+
+// DATA TYPE COMPONENT
+import FormDataType from './formDataType';
+import APIDataType from './apiDataType';
 
 // DATA IMPORT
 import allProducts from '../data/allProduct.json';
@@ -26,10 +31,15 @@ const ProductDetailsPage = () => {
   
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
-  
-  useEffect(() => {
-    setTimeout(setLoading(false), 1000);
-  })
+
+  const getDataTypeComponentByType = (data) => {
+    switch (data.type) {
+      case DATA_TYPE.DATA: 
+        return <FormDataType data={data}/>
+      case DATA_TYPE.API: 
+        return <APIDataType data={data} setLoading={setLoading}/>;
+    }
+  }
   
   return (
     <> 
@@ -37,7 +47,7 @@ const ProductDetailsPage = () => {
       <Container>
         {productData.map((item, index) => (
         <Box key={index}>
-          <FromField label={item.label} value={item.value} canCopy mask/>
+          {item.type && getDataTypeComponentByType(item)}
         </Box>
         ))}
       </Container>
