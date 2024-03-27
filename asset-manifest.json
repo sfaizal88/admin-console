@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/admin-console/static/css/main.2ac4231e.css",
+    "main.css": "/admin-console/static/css/main.ef4b3803.css",
     "main.js": "/admin-console/static/js/main.39346e21.js",
     "static/js/453.93fc0d3b.chunk.js": "/admin-console/static/js/453.93fc0d3b.chunk.js",
     "static/media/aelf-logo.png": "/admin-console/static/media/aelf-logo.5fc029290722e9be8bf4.png",
@@ -10,12 +10,12 @@
     "static/media/image-generation.png": "/admin-console/static/media/image-generation.54dcc5e743f45f339ddb.png",
     "static/media/logo-mainnet.svg": "/admin-console/static/media/logo-mainnet.83236462db3835407ade0bf786b9a74d.svg",
     "index.html": "/admin-console/index.html",
-    "main.2ac4231e.css.map": "/admin-console/static/css/main.2ac4231e.css.map",
+    "main.ef4b3803.css.map": "/admin-console/static/css/main.ef4b3803.css.map",
     "main.39346e21.js.map": "/admin-console/static/js/main.39346e21.js.map",
     "453.93fc0d3b.chunk.js.map": "/admin-console/static/js/453.93fc0d3b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ac4231e.css",
+    "static/css/main.ef4b3803.css",
     "static/js/main.39346e21.js"
   ]
 }
