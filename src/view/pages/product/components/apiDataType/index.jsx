@@ -22,7 +22,7 @@ const APIDataType = (props) => {
   const classes = useStyles();
 
   // LOCAL VARIABLE
-  const {method, host, url, info, requestBody, responseBody} = props.data;
+  let {method, host, url, info, requestBody, responseBody} = props.data;
 
   // DECLARE STATE
   const [isOpen, setOpen] = useState(false);
@@ -30,6 +30,7 @@ const APIDataType = (props) => {
   const [requestContentType, setRequestContentType] = useState(REQUEST_TYPE[0]);
 
   const onEditRequestData = (dataObject) => {
+    console.log(dataObject);
     requestBody = dataObject.updated_src;
     console.log(requestBody);
   }
@@ -100,8 +101,8 @@ const APIDataType = (props) => {
                   src={JSON.parse(requestBody)} 
                   theme="monokai"
                   onEdit={onEditRequestData}
-                  onAdd={(val) => console.log(val)}
-                  onDelete={(val) => console.log(val)}/>}
+                  onAdd={onEditRequestData}
+                  onDelete={onEditRequestData}/>}
               </Box>
             </Box>
           </Box>
