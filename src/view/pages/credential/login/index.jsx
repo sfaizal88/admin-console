@@ -89,8 +89,8 @@ const LoginPage = () => {
       If you're comfortable granting us permission, please click the "Proceed" button below. If not, you can choose to 'log off' from here.</Box></>}
       yesLabel='Proceed'
       noLabel='Log off'
-      onClickNo={denyPermission}
-      onClickYes={allowPermission}
+      onClickNo={() => denyPermission()}
+      onClickYes={() => allowPermission()}
       />}
     </form>
   )
