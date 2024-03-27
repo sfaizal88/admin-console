@@ -80,7 +80,6 @@ const APIDataType = (props) => {
                 <Box className={classes.paramTitle}>Request Body</Box>
                 <Box flex={1} justifyContent={'flex-end'} display='flex'><Select
                   value={requestContentType}
-                  label="Content type"
                   size='small'
                   defaultValue={REQUEST_TYPE[0]}
                   onChange={(event) => setRequestContentType(event.target.value)}
@@ -106,7 +105,6 @@ const APIDataType = (props) => {
                 <Box flex={1} justifyContent={'flex-end'} display='flex'><Select
                   value={REQUEST_TYPE[0]}
                   disabled
-                  label="Content type"
                   size='small'
                   defaultValue={REQUEST_TYPE[0]}
                 >
