@@ -7,6 +7,7 @@
  */
 // GENERIC IMPORT
 import React, {useState} from 'react';
+import { encode } from 'base-64';
 import axios from 'axios';
 import {Box, Button, Select, MenuItem, Chip} from '@mui/material';
 import ReactJson from 'react-json-view';
