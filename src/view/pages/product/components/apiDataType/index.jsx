@@ -99,7 +99,9 @@ const APIDataType = (props) => {
                   name={null} 
                   src={JSON.parse(requestBody)} 
                   theme="monokai"
-                  onEdit={onEditRequestData}/>}
+                  onEdit={onEditRequestData}
+                  onAdd={(val) => console.log(val)}
+                  onDelete={(val) => console.log(val)}/>}
               </Box>
             </Box>
           </Box>
