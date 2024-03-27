@@ -41,7 +41,6 @@ const APIDataType = (props) => {
     props.setLoading(true);
     try {
       const param = JSON.parse(requestBody);
-      console.log("Display name: ", userState.user.displayName);
       const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
       const response = await axios.post(
         apiURL, 

@@ -33,10 +33,6 @@ const Auth = () => {
     const checkAuth = () => {
         setLoading(true);
         const token = localStorage.getItem('token');
-        console.log("token: ", token);
-        console.log("currentPath: ", currentPath);
-        console.log("nonTokenPath.includes(currentPath): ", nonTokenPath.includes(currentPath));
-        console.log("nonTokenPath: ", nonTokenPath);
         // IF USER HAVE TOKEN AND TRY TO VISIT LOGIN SCREEN
         if (token) {
             if (nonTokenPath.includes(currentPath)) {

@@ -94,7 +94,6 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
         const queryString = url.substring(url.indexOf('?') + 1);
         const params = new URLSearchParams(queryString);
         const code = params.get('code');
-        console.log("Code: ",code);
         if (code) {
             setLoading(true);
             // Make a POST request to exchange the code for an access token
@@ -107,12 +106,9 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
             try {
               const response = await axios.post(LOGIN_API, {...param}, JSONHeader);
               if (response.data) {
-                console.log('Auth details: ', response.data);
                 const accountResponse = await axios.post(ALL_ACCOUNTS_API, {authToken: response.data.access_token}, JSONHeader);
-                console.log('Account details: ', accountResponse);
                 if (accountResponse.data) {
                   if (accountResponse.data?.data?.[0].accountName === 'aelf') {
-                  console.log('Account details: ', accountResponse.data);
                   setUserAccount(accountResponse.data.data[0]);
                   setOpenPermissionModal(true);
                   setAccessToken(response.data.access_token);
