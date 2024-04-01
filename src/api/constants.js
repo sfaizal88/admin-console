@@ -11,4 +11,4 @@ export const REDIRECT_URL = 'https://sfaizal88.github.io/admin-console/';
 
 // KONGHQ
 export const SET_CONFIG_KONGHQ = "http://35.202.61.156/prompt/set-config";
-export const ADD_API_KEY_KONGHQ = "http://35.202.61.156/prompt/set-config";
+export const ADD_API_KEY_KONGHQ = "http://35.202.61.156/scheduler/add";
