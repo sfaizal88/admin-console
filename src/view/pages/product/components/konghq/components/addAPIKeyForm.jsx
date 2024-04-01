@@ -72,8 +72,8 @@ const AddAPIKeyForm = (props) => {
       noValidate
     >
       {fields.map((field, index) => (
-        <Box mb={0} key={field.id}>
-          <Grid container spacing={2} className={classes.row}>
+        <Box my={2} key={field.id}>
+          <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
                   <TextField {...commonProps} label="API Key" name={`apiList.${index}.apiKey`} errorState={errors.apiList?.[index]?.apiKey} placeholder="Enter the api Key"/>
               </Grid>
