@@ -6,8 +6,8 @@
  * 
  */
 // GENERIC IMPORT
-import React from 'react';
-import {Box, Grid, Button} from '@mui/material';
+import React, {useState} from 'react';
+import {Box, Grid, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
 import SendIcon from '@mui/icons-material/Send';
@@ -26,6 +26,17 @@ const SetConfigForm = (props) => {
   // DECLARE STYLE
   const classes = useStyles();
 
+  // DECLARE STATE
+  const [fileUpload, setFileUpload] = useState({
+    isConfigTextFile: 1,
+    isScriptContentFile: 1,
+    isValidationTestCaseFile: 1,
+  })
+  const [fileContent, setFileContent] = useState({
+    configTextFile: null,
+    scriptContentFile: null,
+    validationTestCaseFile: null,
+  })
   // DECLARE NOTIFICATION
   const setNotification = useNotification();
 
@@ -45,11 +56,32 @@ const SetConfigForm = (props) => {
   });
   const commonProps = {register, errors, isRequired: true};
 
+  const handleFileChange = (event, name) => {
+    const { type, files } = event.target;
+    const file = files[0];
+    console.log(type);
+    const reader = new FileReader();
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+    reader.onload = (e) => {
+      if (fileExtension === 'json') {
+        setFileContent({...fileContent, [name]: JSON.stringify(JSON.parse(e.target.result))});
+      } else {
+        setFileContent({...fileContent, [name]: e.target.result});
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const onSubmit = async (data) => {
-    console.log(data);
     props.setLoading(true);
     try {
-        const response = await axios.post(SET_CONFIG_KONGHQ, data, JSONHeader);
+      const param = {
+        ...data,
+        ...(fileUpload.isConfigTextFile == 1 && { configText: fileContent.configTextFile }),
+        ...(fileUpload.isScriptContentFile == 1 && { scriptContent: fileContent.scriptContentFile }),
+        ...(fileUpload.isValidationTestCaseFile == 1 && { validationTestCase: fileContent.validationTestCaseFile }),
+      }
+        const response = await axios.post(SET_CONFIG_KONGHQ, param, JSONHeader);
         if (response.data) {
           console.log(response.data);
           setNotification.success("Konghq configured successfully.");
@@ -69,21 +101,69 @@ const SetConfigForm = (props) => {
     >
       <br/>
       <Grid container spacing={2} className={classes.row}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
               <TextField {...commonProps} label="Identifier" name="identifier" placeholder="Enter the identifier"/>
           </Grid>
-          <Grid item xs={12} sm={6}>
-              <TextField {...commonProps} label="Config Text" name="configText" placeholder="Enter the config text"/>
-          </Grid>
       </Grid>
-      <Grid container spacing={2} className={classes.row}>
-          <Grid item xs={12} sm={6}>
-              <TextField {...commonProps} label="Script Content" name="scriptContent" placeholder="Enter the script content"/>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-              <TextField {...commonProps} label="Validation Test Case" name="validationTestCase" placeholder="Enter the validation test case"/>
-          </Grid>
-      </Grid>
+      <Box className={classes.row}>
+        <Box className={classes.rowField}>
+          <FormControl>
+            <FormLabel>Config Text*</FormLabel>
+            <RadioGroup row
+              defaultValue={fileUpload.isConfigTextFile}
+              name="radio-buttons-group"
+              onChange={(event) => setFileUpload({...fileUpload, isConfigTextFile: event.target.value})}
+            >
+              <FormControlLabel value={1} control={<Radio />} label="File upload" />
+              <FormControlLabel value={0} control={<Radio />} label="Content" />
+            </RadioGroup>
+          </FormControl>
+        </Box>
+        <Box className={classes.rowValue}>
+          <TextField {...commonProps} name="configText" placeholder="Enter the config text" 
+          {...(fileUpload.isConfigTextFile == 1 && { type: 'file', handleChange: (event) => handleFileChange(event, 'configTextFile')})}/>
+        </Box>
+      </Box>
+
+      <Box className={classes.row}>
+        <Box className={classes.rowField}>
+          <FormControl>
+            <FormLabel>Script Content*</FormLabel>
+            <RadioGroup row
+              defaultValue={fileUpload.isScriptContentFile}
+              name="radio-buttons-group"
+              onChange={(event) => setFileUpload({...fileUpload, isScriptContentFile: event.target.value})}
+            >
+              <FormControlLabel value={1} control={<Radio />} label="File upload" />
+              <FormControlLabel value={0} control={<Radio />} label="Content" />
+            </RadioGroup>
+          </FormControl>
+        </Box>
+        <Box className={classes.rowValue}>
+          <TextField {...commonProps}  name="scriptContent" placeholder="Enter the script content"
+          {...(fileUpload.isScriptContentFile == 1 && { type: 'file', handleChange: (event) => handleFileChange(event, 'scriptContentFile')})}/>
+        </Box>
+      </Box>
+
+      <Box className={classes.row}>
+        <Box className={classes.rowField}>
+          <FormControl >
+            <FormLabel>Validation Test Case*</FormLabel>
+            <RadioGroup row
+              defaultValue={fileUpload.isValidationTestCaseFile}
+              name="radio-buttons-group"
+              onChange={(event) => setFileUpload({...fileUpload, isValidationTestCaseFile: event.target.value})}
+            >
+              <FormControlLabel value={1} control={<Radio />} label="File upload" />
+              <FormControlLabel value={0} control={<Radio />} label="Content" />
+            </RadioGroup>
+          </FormControl>
+          </Box>
+          <Box className={classes.rowValue}>
+          <TextField {...commonProps} name="validationTestCase" placeholder="Enter the validation test case"  
+          {...(fileUpload.isValidationTestCaseFile == 1 && { type: 'file', handleChange: (event) => handleFileChange(event, 'validationTestCaseFile')})}/>
+        </Box>
+      </Box>
       <Box className={classes.btnContainer}>
           <Button className={classes.btn} startIcon={<SendIcon/>} variant="contained" type="submit">Submit</Button>
       </Box>
