@@ -3,7 +3,11 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles((theme) => ({
   btn: {
     textTransform: 'none !important',
-    fontWeight: '600 !important'
+    fontWeight: '600 !important',
+    display: 'inline-flex',
+    [theme.breakpoints.down('sm')]: {
+      flex: 1,
+    }
   },
   btnContainer: {
     display: 'flex',
@@ -13,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     gap: '8px'
   },
   row: {
-    marginTop: '1px !important'
+    marginTop: '1px !important',
   }
 }));
   

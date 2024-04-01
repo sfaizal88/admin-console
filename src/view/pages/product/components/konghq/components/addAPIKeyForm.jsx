@@ -74,20 +74,20 @@ const AddAPIKeyForm = (props) => {
       {fields.map((field, index) => (
         <Box mb={0} key={field.id}>
           <Grid container spacing={2} className={classes.row}>
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={4}>
                   <TextField {...commonProps} label="API Key" name={`apiList.${index}.apiKey`} errorState={errors.apiList?.[index]?.apiKey} placeholder="Enter the api Key"/>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={12} sm={3}>
                   <TextField {...commonProps} label="Email" name={`apiList.${index}.email`} errorState={errors.apiList?.[index]?.email}  placeholder="Enter the email"/>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={12} sm={2}>
                   <TextField type="number" {...commonProps} label="Tier" name={`apiList.${index}.tier`} errorState={errors.apiList?.[index]?.tier}  placeholder="Enter the tier"/>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={12} sm={2}>
                   <TextField type="number" {...commonProps} label="Max Quota" name={`apiList.${index}.maxQuota`} errorState={errors.apiList?.[index]?.maxQuota}  placeholder="Enter the max quota"/>
               </Grid>
-              <Grid item xs={1}>
-                <Button type="button" className={classes.btn} startIcon={<DeleteIcon/>} variant="contained" onClick={() => remove(index)} color="error">Remove</Button>
+              <Grid item xs={12} sm={1}>
+                <Button type="button" className={classes.btn} startIcon={<DeleteIcon/>} variant="contained" onClick={() => remove(index)} color="error" fullWidth>Remove</Button>
               </Grid>
           </Grid>
         </Box>

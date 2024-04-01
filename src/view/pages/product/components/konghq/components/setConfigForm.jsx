@@ -69,18 +69,18 @@ const SetConfigForm = (props) => {
     >
       <br/>
       <Grid container spacing={2} className={classes.row}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
               <TextField {...commonProps} label="Identifier" name="identifier" placeholder="Enter the identifier"/>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
               <TextField {...commonProps} label="Config Text" name="configText" placeholder="Enter the config text"/>
           </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.row}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
               <TextField {...commonProps} label="Script Content" name="scriptContent" placeholder="Enter the script content"/>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
               <TextField {...commonProps} label="Validation Test Case" name="validationTestCase" placeholder="Enter the validation test case"/>
           </Grid>
       </Grid>
