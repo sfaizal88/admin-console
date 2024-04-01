@@ -35,8 +35,12 @@ const ProductPage = () => {
   const [isLoading, setLoading] = useState(false);
   
   // ON MENU ITEM CLICKED
-  const navigateToProductDetails = (productId) => {
-    navigate(`/productDetails/${productId}`);
+  const navigateToProductDetails = (product) => {
+    if (product.isStandalonePage) {
+      navigate(product.pathName);
+    } else {
+      navigate(`/productDetails/${product.id}`);
+    }
   };
 
   useEffect(() => {
@@ -48,7 +52,7 @@ const ProductPage = () => {
       <PageHeader title='Product listing' subtitle="Explore our products and find what you need on our product listing page." {...{isLoading}}></PageHeader>
       <Container>
       {allProducts.map(item => (
-        <Box key={item.id} className={clsx(classes.card, item.disabled && classes.cardDisabled)} onClick={() => !item.disabled && navigateToProductDetails(item.id)}>
+        <Box key={item.id} className={clsx(classes.card, item.disabled && classes.cardDisabled)} onClick={() => !item.disabled && navigateToProductDetails(item)}>
           {item.disabled && <Box className={classes.overlay}></Box>}
           <Box className={classes.cardTitleContainer}>
             <img src={require(`../../../assets/img/${item.imgName}`)} className={classes.cardLogo}/>

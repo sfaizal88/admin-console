@@ -27,6 +27,7 @@ import SettingsPage from '../pages/settings';
 import ProductDetailsPage from '../pages/product/components/productDetails';
 import HelpPage from '../pages/help';
 import IdleTimer from '../pages/credential/idleTimer';
+import KonghqSection from '../pages/product/components/konghq';
 import Auth from '../pages/credential/auth';
 
 // STYLE IMPORT
@@ -47,8 +48,9 @@ const AppRoutes = () => {
                             <Route path={PATH.HOME_PATH} element={<DashboardPage />}/>
                             <Route path={PATH.PRODUCT_PATH} element={<ProductPage />}/>
                             <Route path={PATH.PRODUCT_DETAILS_PATH} element={<ProductDetailsPage />}/>
-                            <Route path={PATH.SETTINGS_PATH} element={<SettingsPage />}/>
                             <Route path={PATH.HELP_PATH} element={<HelpPage />}/>
+                            <Route path={PATH.SETTINGS_PATH} element={<SettingsPage />}/>
+                            <Route path={PATH.KONGHQ_CONFIG_PATH} element={<KonghqSection />}/>
                             <Route path="*" element={<NoPage />} />
                         </Routes>
                     </Box>

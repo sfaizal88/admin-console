@@ -18,13 +18,13 @@ const TextField = (props) => {
     const classes = useStyles();
 
     // PROPS
-    const {name, errors, label, placeholder, register} = props;
+    const {name, errors, label, placeholder, register, isRequired, type = 'text', errorState = false} = props;
 
     return (
         <Box>
-            <MuiTextField label={label} variant="outlined" {...register(name)} 
-            fullWidth placeholder={placeholder} size='small' error={errors[name]}/>
-            <Box className={classes.errorMessage}>{errors[name] && errors[name].message}</Box>
+            <MuiTextField type={type} label={label} variant="outlined" {...register(name)} required={isRequired}
+            fullWidth placeholder={placeholder} size='small' error={errorState || errors[name]} className={classes.texfield}/>
+            <Box className={classes.errorMessage}>{errorState && errorState.message || errors[name] && errors[name].message}</Box>
         </Box>
     )
 };

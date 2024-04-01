@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
     errorTextField: {
         border: '1px solid #c0392b',
         color: '#c0392b',
+    },
+    texfield: {
+        background: '#fff'
     }
   }));
   
