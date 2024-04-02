@@ -7,6 +7,7 @@
  */
 // GENERIC IMPORT
 import React, {useState} from 'react';
+import { encode } from 'base-64';
 import {Box, Grid, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
@@ -18,6 +19,7 @@ import {TextField} from '../../../../../atom';
 import {JSONHeader, SET_CONFIG_KONGHQ, originSource} from '../../../../../../api/constants';
 import {setConfigSchema} from '../schema';
 import useNotification from '../../../../../../utils/notification';
+import {useUser} from '../../../../../../contexts/userContext';
 
 // STYLE IMPORT
 import useStyles from '../styles';
@@ -37,6 +39,7 @@ const SetConfigForm = (props) => {
     scriptContentFile: null,
     validationTestCaseFile: null,
   })
+  const { state: userState } = useUser();
   // DECLARE NOTIFICATION
   const setNotification = useNotification();
 
@@ -75,6 +78,7 @@ const SetConfigForm = (props) => {
   const onSubmit = async (data) => {
     props.setLoading(true);
     try {
+      const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
       const param = {
         ...data,
         ...(fileUpload.isConfigTextFile == 1 && { configText: fileContent.configTextFile }),
@@ -85,6 +89,7 @@ const SetConfigForm = (props) => {
           headers: {
           'Content-Type': JSONHeader.headers['Content-Type'],
           'Access-Control-Allow-Origin': originSource,
+          'Authorization': `Basic ${auth}`
         }});
         if (response.data) {
           console.log(response.data);

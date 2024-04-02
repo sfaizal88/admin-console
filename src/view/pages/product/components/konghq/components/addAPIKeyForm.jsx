@@ -8,6 +8,7 @@
 // GENERIC IMPORT
 import React from 'react';
 import {Box, Grid, Button} from '@mui/material';
+import { encode } from 'base-64';
 import axios from 'axios';
 import { useForm, useFieldArray } from "react-hook-form";
 import SendIcon from '@mui/icons-material/Send';
@@ -20,6 +21,7 @@ import {TextField} from '../../../../../atom';
 import {JSONHeader, ADD_API_KEY_KONGHQ, originSource} from '../../../../../../api/constants';
 import {addAPIKeySchema} from '../schema';
 import useNotification from '../../../../../../utils/notification';
+import {useUser} from '../../../../../../contexts/userContext';
 
 // STYLE IMPORT
 import useStyles from '../styles';
@@ -27,6 +29,7 @@ import useStyles from '../styles';
 const AddAPIKeyForm = (props) => {
   // DECLARE STYLE
   const classes = useStyles();
+  const { state: userState } = useUser();
 
   // DECLARE NOTIFICATION
   const setNotification = useNotification();
@@ -53,10 +56,12 @@ const AddAPIKeyForm = (props) => {
     console.log(data);
     props.setLoading(true);
     try {
+        const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
         const response = await axios.post(ADD_API_KEY_KONGHQ, data.apiList, {
           headers: {
           'Content-Type': JSONHeader.headers['Content-Type'],
           'Access-Control-Allow-Origin': originSource,
+          'Authorization': `Basic ${auth}`
           }
         });
         if (response.data) {
