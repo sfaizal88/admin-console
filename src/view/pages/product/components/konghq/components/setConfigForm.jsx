@@ -15,7 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 // COMPONENT IMPORT
 import {TextField} from '../../../../../atom';
-import {JSONHeader, SET_CONFIG_KONGHQ} from '../../../../../../api/constants';
+import {JSONHeader, SET_CONFIG_KONGHQ, originSource} from '../../../../../../api/constants';
 import {setConfigSchema} from '../schema';
 import useNotification from '../../../../../../utils/notification';
 
@@ -84,7 +84,7 @@ const SetConfigForm = (props) => {
         const response = await axios.post(SET_CONFIG_KONGHQ, param, {
           headers: {
           'Content-Type': JSONHeader.headers['Content-Type'],
-          'Access-Control-Allow-Origin': 'https://sfaizal88.github.io',
+          'Access-Control-Allow-Origin': originSource,
         }});
         if (response.data) {
           console.log(response.data);

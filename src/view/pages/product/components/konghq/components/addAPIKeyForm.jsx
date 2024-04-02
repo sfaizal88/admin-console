@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 
 // COMPONENT IMPORT
 import {TextField} from '../../../../../atom';
-import {JSONHeader, ADD_API_KEY_KONGHQ} from '../../../../../../api/constants';
+import {JSONHeader, ADD_API_KEY_KONGHQ, originSource} from '../../../../../../api/constants';
 import {addAPIKeySchema} from '../schema';
 import useNotification from '../../../../../../utils/notification';
 
@@ -39,7 +39,7 @@ const AddAPIKeyForm = (props) => {
     formState: { errors }
   } = useForm({
     defaultValues: {
-      apiList: [{ apiKey: '', email: '', tier: 0, maxQuota: 0 }],
+      apiList: [{ apiKey: {apiKeyString: '', serviceProvider: '', url: ''}, email: '', tier: 0, maxQuota: 0 }],
     },
     resolver: yupResolver(addAPIKeySchema),
   });
@@ -53,7 +53,12 @@ const AddAPIKeyForm = (props) => {
     console.log(data);
     props.setLoading(true);
     try {
-        const response = await axios.post(ADD_API_KEY_KONGHQ, data.apiList, JSONHeader);
+        const response = await axios.post(ADD_API_KEY_KONGHQ, data.apiList, {
+          headers: {
+          'Content-Type': JSONHeader.headers['Content-Type'],
+          'Access-Control-Allow-Origin': originSource,
+          }
+        });
         if (response.data) {
           console.log(response.data);
           setNotification.success("API key added successfully.");
@@ -74,16 +79,22 @@ const AddAPIKeyForm = (props) => {
       {fields.map((field, index) => (
         <Box my={2} key={field.id}>
           <Grid container spacing={2}>
-              <Grid item xs={12} sm={4}>
-                  <TextField {...commonProps} label="API Key" name={`apiList.${index}.apiKey`} errorState={errors.apiList?.[index]?.apiKey} placeholder="Enter the api Key"/>
-              </Grid>
               <Grid item xs={12} sm={3}>
+                  <TextField {...commonProps} label="API Key" name={`apiList.${index}.apiKey.apiKeyString`} errorState={errors.apiList?.[index]?.apiKey.apiKeyString} placeholder="Enter the api Key"/>
+              </Grid>
+              <Grid item xs={12} sm={2}>
+                  <TextField {...commonProps} label="Service Provider" name={`apiList.${index}.apiKey.serviceProvider`} errorState={errors.apiList?.[index]?.apiKey.serviceProvider} placeholder="Enter the service provider"/>
+              </Grid>
+              <Grid item xs={12} sm={2}>
+                  <TextField {...commonProps} isRequired={false} label="URL" name={`apiList.${index}.apiKey.url`} errorState={errors.apiList?.[index]?.apiKey.url} placeholder="Enter the url"/>
+              </Grid>
+              <Grid item xs={12} sm={2}>
                   <TextField {...commonProps} label="Email" name={`apiList.${index}.email`} errorState={errors.apiList?.[index]?.email}  placeholder="Enter the email"/>
               </Grid>
-              <Grid item xs={12} sm={2}>
+              <Grid item xs={12} sm={1}>
                   <TextField type="number" {...commonProps} label="Tier" name={`apiList.${index}.tier`} errorState={errors.apiList?.[index]?.tier}  placeholder="Enter the tier"/>
               </Grid>
-              <Grid item xs={12} sm={2}>
+              <Grid item xs={12} sm={1}>
                   <TextField type="number" {...commonProps} label="Max Quota" name={`apiList.${index}.maxQuota`} errorState={errors.apiList?.[index]?.maxQuota}  placeholder="Enter the max quota"/>
               </Grid>
               <Grid item xs={12} sm={1}>
