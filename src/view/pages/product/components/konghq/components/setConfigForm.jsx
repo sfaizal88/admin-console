@@ -81,7 +81,11 @@ const SetConfigForm = (props) => {
         ...(fileUpload.isScriptContentFile == 1 && { scriptContent: fileContent.scriptContentFile }),
         ...(fileUpload.isValidationTestCaseFile == 1 && { validationTestCase: fileContent.validationTestCaseFile }),
       }
-        const response = await axios.post(SET_CONFIG_KONGHQ, param, JSONHeader);
+        const response = await axios.post(SET_CONFIG_KONGHQ, param, {
+          headers: {
+          'Content-Type': JSONHeader.headers['Content-Type'],
+          'Access-Control-Allow-Origin': 'https://sfaizal88.github.io',
+        }});
         if (response.data) {
           console.log(response.data);
           setNotification.success("Konghq configured successfully.");
