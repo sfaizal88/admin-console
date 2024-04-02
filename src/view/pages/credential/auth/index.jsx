@@ -26,21 +26,28 @@ const Auth = () => {
     const location = useLocation();
     const {gotoPage} = useRedirect();
     const currentPath = location.pathname;
+    console.log("currentPath: ", currentPath);
     
     // LOCAL VARIABLE
     const nonTokenPath = [PATH.LOGIN_PATH];
+    console.log("nonTokenPath: ", nonTokenPath);
     
     const checkAuth = () => {
         setLoading(true);
         const token = localStorage.getItem('token');
+        console.log("token: ", token);
         // IF USER HAVE TOKEN AND TRY TO VISIT LOGIN SCREEN
         if (token) {
+            console.log("Token present");
             if (nonTokenPath.includes(currentPath)) {
+                console.log("You clicked login url");
                 gotoPage(PATH.HOME_PATH);
             }
         } else {
+            console.log("Token not there");
             // IF USER DONT HAVE TOKEN AND TRY TO VISIT AFTER LOGIN SCREEN
             if (!nonTokenPath.includes(currentPath)) {
+                console.log("You clicked other url when token not ther");
                 gotoPage(PATH.LOGIN_PATH);
             }
         }
