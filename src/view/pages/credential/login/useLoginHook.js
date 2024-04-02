@@ -52,15 +52,15 @@ export function useLoginHook(setLoading, setUserAccount, setOpenPermissionModal,
 
     const mockLogin = () => {
       const responseData = AccountData.data[0];
-      const auth = '123456qwerty';
+      // const auth = '123456qwerty';
       const userData = {
-          token: auth,
+          token: accessToken,
           displayName: responseData.displayName,
           email: responseData.incomingUserName
       };
       setUserAccount(responseData);
       setOpenPermissionModal(true);
-      setAccessToken(auth);
+      setAccessToken(accessToken);
       dispatch({ type: ACTION_TYPE.SET_USER, payload: userData });
       gotoPage(PATH.HOME_PATH);
     }
