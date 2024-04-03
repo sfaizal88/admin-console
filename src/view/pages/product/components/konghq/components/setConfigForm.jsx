@@ -92,8 +92,12 @@ const SetConfigForm = (props) => {
           'Authorization': `Basic ${auth}`
         }});
         if (response.data) {
+          if (response.data?.error) {
+            setNotification.error(response.data?.error);
+          } else {
+            setNotification.success("Konghq configured successfully.");
+          }
           console.log(response.data);
-          setNotification.success("Konghq configured successfully.");
         }
       } catch (error) {
         console.log("Error occured: ", error);
