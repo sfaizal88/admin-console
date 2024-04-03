@@ -20,6 +20,7 @@ import {JSONHeader, SET_CONFIG_KONGHQ, originSource} from '../../../../../../api
 import {setConfigSchema} from '../schema';
 import useNotification from '../../../../../../utils/notification';
 import {useUser} from '../../../../../../contexts/userContext';
+import {capitalizeFirstLetter} from '../../../../../../utils';
 
 // STYLE IMPORT
 import useStyles from '../styles';
@@ -93,7 +94,7 @@ const SetConfigForm = (props) => {
         }});
         if (response.data) {
           if (response.data?.error) {
-            setNotification.error(response.data?.error);
+            setNotification.error(capitalizeFirstLetter(response.data?.error));
           } else {
             setNotification.success("Konghq configured successfully.");
           }

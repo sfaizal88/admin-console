@@ -6,3 +6,7 @@ export const truncateString = (str, maxLength = 20) =>  {
   }
   return str;
 }
+
+export const capitalizeFirstLetter = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
