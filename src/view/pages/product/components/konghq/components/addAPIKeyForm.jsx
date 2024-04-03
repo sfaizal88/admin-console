@@ -85,13 +85,13 @@ const AddAPIKeyForm = (props) => {
         <Box my={2} key={field.id}>
           <Grid container spacing={2}>
               <Grid item xs={12} sm={3}>
-                  <TextField {...commonProps} label="API Key" name={`apiList.${index}.apiKey.apiKeyString`} errorState={errors.apiList?.[index]?.apiKey.apiKeyString} placeholder="Enter the api Key"/>
+                  <TextField {...commonProps} label="API Key" name={`apiList.${index}.apiKey.apiKeyString`} errorState={errors.apiList?.[index]?.apiKey?.apiKeyString} placeholder="Enter the api Key"/>
               </Grid>
               <Grid item xs={12} sm={2}>
-                  <TextField {...commonProps} label="Service Provider" name={`apiList.${index}.apiKey.serviceProvider`} errorState={errors.apiList?.[index]?.apiKey.serviceProvider} placeholder="Enter the service provider"/>
+                  <TextField {...commonProps} label="Service Provider" name={`apiList.${index}.apiKey.serviceProvider`} errorState={errors.apiList?.[index]?.apiKey?.serviceProvider} placeholder="Enter the service provider"/>
               </Grid>
               <Grid item xs={12} sm={2}>
-                  <TextField {...commonProps} isRequired={false} label="URL" name={`apiList.${index}.apiKey.url`} errorState={errors.apiList?.[index]?.apiKey.url} placeholder="Enter the url"/>
+                  <TextField {...commonProps} isRequired={false} label="URL" name={`apiList.${index}.apiKey.url`} errorState={errors.apiList?.[index]?.apiKey?.url} placeholder="Enter the url"/>
               </Grid>
               <Grid item xs={12} sm={2}>
                   <TextField {...commonProps} label="Email" name={`apiList.${index}.email`} errorState={errors.apiList?.[index]?.email}  placeholder="Enter the email"/>
