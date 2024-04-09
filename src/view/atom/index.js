@@ -7,4 +7,5 @@ export {default as ConfirmModal} from './modal/confirmModal';
 export {default as FormModal} from './modal/formModal';
 export {default as Link} from './link';
 export {default as FromField} from './formField';
+export {default as Paper} from './paper';
 export {default as TextField} from './textField';

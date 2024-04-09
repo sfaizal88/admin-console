@@ -12,8 +12,8 @@ import {Box, Tabs, Tab} from '@mui/material';
 // COMPONENT IMPORT
 import {Container} from '../../../../atom';
 import PageHeader from '../../../common/header/pageHeader';
-import SetConfigForm from './components/setConfigForm';
-import AddAPIKeyForm from './components/addAPIKeyForm';
+import SetConfigForm from './components/config/setConfigForm';
+import AddAPIKeyForm from './components/apiKey/addAPIKeyForm';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -31,8 +31,8 @@ const KonghqSection = () => {
       <PageHeader title={'Konghq'} subtitle={'Konghq admin setup configuration.'} {...{isLoading}}></PageHeader>
       <Container>
         <Tabs value={selectedTab} onChange={(event, newValue) => setSelectedTab(newValue)}>
-          <Tab label="Set Configure" />
-          <Tab label="Add API Key"  />
+          <Tab label="Configure" />
+          <Tab label="API Key"  />
         </Tabs>
         <Box>
           {selectedTab === 0 && <SetConfigForm {...{setLoading}}/>}
