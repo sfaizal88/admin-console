@@ -34,9 +34,9 @@ const APIKeyList = (props) => {
   const [state, setState] = useState([]);
   const [selectedData, setSelectedData] = useState(listData[0]);
   const [isOpenViewModal, setOpenViewModal] = useState(false);
+  const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
 
   const getAllConfig = async () => {
-    const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
     const response = await axios.get(LIST_API_KEY_KONGHQ, {
       headers: {
       'Content-Type': JSONHeader.headers['Content-Type'],
