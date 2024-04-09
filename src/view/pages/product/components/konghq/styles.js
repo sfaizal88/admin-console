@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     padding: '10px 20px',   
     boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
   },
   rowDataHeader: {
     background: '#f6f6f6',
@@ -72,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     padding: '10px 20px',   
     boxSizing: 'border-box',
+    wordBreak: 'break-all',
   },
   link: {
       cursor: 'pointer',

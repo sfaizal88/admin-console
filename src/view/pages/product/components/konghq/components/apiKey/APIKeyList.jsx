@@ -18,7 +18,7 @@ import {LIST_API_KEY_KONGHQ, JSONHeader, originSource} from '../../../../../../.
 import {useUser} from '../../../../../../../contexts/userContext';
 
 // DATA
-import listData from '../../mockdata/configList.json'
+import listData from '../../mockdata/apiKeys.json'
 
 // STYLE IMPORT
 import useStyles from '../../styles';
@@ -26,7 +26,7 @@ import useStyles from '../../styles';
 const APIKeyList = (props) => {
   // DECLARE STYLE
   const classes = useStyles();
-  const widths = [2, 2, 2, 2, 2, 2]
+  const widths = [2, 2, 2, 2, 1, 1, 2]
 
   // DECLARE STATE
   const { state: userState } = useUser();
@@ -41,43 +41,47 @@ const APIKeyList = (props) => {
       'Authorization': `Basic ${auth}`
       }
     });
-    setState(response.data?.result || []);
+    setState(response?.data || []);
   };
 
   useEffect(() => {
-    getAllConfig();
-    // setState(listData.result)
+   getAllConfig();
+  // setState(listData)
   }, [])
   return (
     <Box>
     <Paper  title='All API Keys' icon={<i class="fa-solid fa-list"></i>}>
       <br/>
       <Grid container className={classes.rowHeader}>
-        <Grid item xs={widths[0]} className={classes.rowHeaderTitle}>Identifier</Grid>
-        <Grid item xs={widths[1]} className={classes.rowHeaderTitle}>Script content</Grid>
-        <Grid item xs={widths[2]} className={classes.rowHeaderTitle}>Config text</Grid>
-        <Grid item xs={widths[3]} className={classes.rowHeaderTitle}>Validation test case</Grid>
-        <Grid item xs={widths[4]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Validation</Box></Grid>
-        <Grid item xs={widths[5]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Action</Box></Grid>
+        <Grid item xs={widths[0]} className={classes.rowHeaderTitle}>API key string</Grid>
+        <Grid item xs={widths[1]} className={classes.rowHeaderTitle}>Service provider</Grid>
+        <Grid item xs={widths[2]} className={classes.rowHeaderTitle}>URL</Grid>
+        <Grid item xs={widths[3]} className={classes.rowHeaderTitle}>Email</Grid>
+        <Grid item xs={widths[4]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Tier</Box></Grid>
+        <Grid item xs={widths[5]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Max quota</Box></Grid>
+        <Grid item xs={widths[6]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Action</Box></Grid>
       </Grid>
       {state.map((item, index) => 
         <Grid container  className={classes.rowDataHeader} key={index}>
           <Grid item xs={widths[0]} className={clsx(classes.rowData)}>
-            <Box component='span'>SD39JSD</Box>
+            {item.apiKey.apiKeyString}
           </Grid>
           <Grid item xs={widths[1]} className={classes.rowData}>
-            <Box component='span' className={classes.link}>Script file</Box>
+            {item.apiKey.serviceProvider}
           </Grid>
           <Grid item xs={widths[2]} className={classes.rowData}>
-            <Box component='span' className={classes.link}>Config file</Box>
+            <Box component='span' className={classes.link}>{item.apiKey.url}</Box>
           </Grid>
           <Grid item xs={widths[3]} className={classes.rowData}>
-            <Box component='span' className={classes.link}>Validation file</Box>
+            {item.email}
           </Grid>
           <Grid item xs={widths[4]} className={classes.rowData}>
-            <Box textAlign={'center'}>Pass</Box>
+            <Box textAlign={'center'}>{item.tier}</Box>
           </Grid>
-          <Grid item xs={widths[5]} className={classes.rowData} >
+          <Grid item xs={widths[5]} className={classes.rowData}>
+            <Box textAlign={'center'}>{item.maxQuota}</Box>
+          </Grid>
+          <Grid item xs={widths[6]} className={classes.rowData} >
             <Box textAlign={'center'}><Box component='span' className={classes.link}>Details</Box>
             </Box>
           </Grid>

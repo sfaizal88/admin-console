@@ -1,0 +1,22 @@
+[
+    {
+        "apiKey": {
+            "apiKeyString": "sk-cMrv99FOPCvHNubAOgrRT3*************************",
+            "serviceProvider": "DalleOpenAI",
+            "url": ""
+        },
+        "email": "another_email@example.com",
+        "tier": 1,
+        "maxQuota": 1
+    },
+    {
+        "apiKey": {
+            "apiKeyString": "sk-cMrv99FOPCvHNubAOgrRT3*************************",
+            "serviceProvider": "DalleOpenAI",
+            "url": ""
+        },
+        "email": "another_email@example.com",
+        "tier": 1,
+        "maxQuota": 1
+    }
+]
