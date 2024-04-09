@@ -29,7 +29,7 @@ const ConfigList = (props) => {
 
   const getAllConfig = async () => {
     const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
-    const response = await axios.get(LIST_CONFIG_KONGHQ, {
+    const response = await axios.post(LIST_CONFIG_KONGHQ, {
       headers: {
       'Content-Type': JSONHeader.headers['Content-Type'],
       'Access-Control-Allow-Origin': originSource,
