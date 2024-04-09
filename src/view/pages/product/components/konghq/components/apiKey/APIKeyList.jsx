@@ -65,10 +65,8 @@ const APIKeyList = (props) => {
       });
       console.log("Remove process: ", response);
     } catch(err) {
-      console.log("Error: ", err.data);
-      if (err?.data?.message) {
-        setNotification(capitalizeFirstLetter(err.message));
-      }
+      console.log("Error: ", err);
+      setNotification.error();
     }
   }
 
