@@ -22,6 +22,7 @@ import {JSONHeader, ADD_API_KEY_KONGHQ, originSource} from '../../../../../../..
 import {addAPIKeySchema} from '../../schema';
 import useNotification from '../../../../../../../utils/notification';
 import {useUser} from '../../../../../../../contexts/userContext';
+import APIKeyList from './APIKeyList';
 
 // STYLE IMPORT
 import useStyles from '../../styles';
@@ -116,6 +117,7 @@ const AddAPIKeyForm = (props) => {
         </Box>
       </form>
       </Paper>
+      <APIKeyList/>
       </Box>
   )
 }
