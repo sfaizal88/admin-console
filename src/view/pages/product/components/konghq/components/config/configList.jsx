@@ -6,9 +6,10 @@
  * 
  */
 // GENERIC IMPORT
+import clsx from 'clsx';
 import React, {useState, useEffect} from 'react';
 import { encode } from 'base-64';
-import {Box} from '@mui/material';
+import {Box, Grid} from '@mui/material';
 import axios from 'axios';
 
 // COMPONENT IMPORT
@@ -16,12 +17,16 @@ import {Paper} from '../../../../../../atom';
 import {LIST_CONFIG_KONGHQ, JSONHeader, originSource} from '../../../../../../../api/constants';
 import {useUser} from '../../../../../../../contexts/userContext';
 
+// DATA
+import listData from '../../mockdata/configList.json'
+
 // STYLE IMPORT
 import useStyles from '../../styles';
 
 const ConfigList = (props) => {
   // DECLARE STYLE
   const classes = useStyles();
+  const widths = [2, 2, 2, 2, 2, 2]
 
   // DECLARE STATE
   const { state: userState } = useUser();
@@ -36,17 +41,48 @@ const ConfigList = (props) => {
       'Authorization': `Basic ${auth}`
       }
     });
-    console.log(response.data);
-    console.log(response.data);
+    setState(response.data?.result || []);
   };
 
   useEffect(() => {
     getAllConfig();
+    // setState(listData.result)
   }, [])
   return (
     <Box>
-    <Paper  title='Set Config' icon={<i class="fa-solid fa-gear"></i>}>
-      LIST
+    <Paper  title='All Config' icon={<i class="fa-solid fa-list"></i>}>
+      <br/>
+      <Grid container className={classes.rowHeader}>
+        <Grid item xs={widths[0]} className={classes.rowHeaderTitle}>Identifier</Grid>
+        <Grid item xs={widths[1]} className={classes.rowHeaderTitle}>Script content</Grid>
+        <Grid item xs={widths[2]} className={classes.rowHeaderTitle}>Config text</Grid>
+        <Grid item xs={widths[3]} className={classes.rowHeaderTitle}>Validation test case</Grid>
+        <Grid item xs={widths[4]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Validation</Box></Grid>
+        <Grid item xs={widths[5]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Action</Box></Grid>
+      </Grid>
+      {state.map((item, index) => 
+        <Grid container  className={classes.rowDataHeader} key={index}>
+          <Grid item xs={widths[0]} className={clsx(classes.rowData)}>
+            <Box component='span'>SD39JSD</Box>
+          </Grid>
+          <Grid item xs={widths[1]} className={classes.rowData}>
+            <Box component='span' className={classes.link}>Script file</Box>
+          </Grid>
+          <Grid item xs={widths[2]} className={classes.rowData}>
+            <Box component='span' className={classes.link}>Config file</Box>
+          </Grid>
+          <Grid item xs={widths[3]} className={classes.rowData}>
+            <Box component='span' className={classes.link}>Validation file</Box>
+          </Grid>
+          <Grid item xs={widths[4]} className={classes.rowData}>
+            <Box textAlign={'center'}>Pass</Box>
+          </Grid>
+          <Grid item xs={widths[5]} className={classes.rowData} >
+            <Box textAlign={'center'}><Box component='span' className={classes.link}>Details</Box>
+            </Box>
+          </Grid>
+        </Grid>
+      )}
     </Paper>
     </Box>
   )
