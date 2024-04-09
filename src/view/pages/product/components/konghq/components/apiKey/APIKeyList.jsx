@@ -13,9 +13,10 @@ import {Box, Grid} from '@mui/material';
 import axios from 'axios';
 
 // COMPONENT IMPORT
-import {Paper} from '../../../../../../atom';
+import {Paper, Empty} from '../../../../../../atom';
 import {LIST_API_KEY_KONGHQ, JSONHeader, originSource} from '../../../../../../../api/constants';
 import {useUser} from '../../../../../../../contexts/userContext';
+import ViewAPIKey from './viewAPIKey';
 
 // DATA
 import listData from '../../mockdata/apiKeys.json'
@@ -31,6 +32,8 @@ const APIKeyList = (props) => {
   // DECLARE STATE
   const { state: userState } = useUser();
   const [state, setState] = useState([]);
+  const [selectedData, setSelectedData] = useState(listData[0]);
+  const [isOpenViewModal, setOpenViewModal] = useState(false);
 
   const getAllConfig = async () => {
     const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
@@ -62,7 +65,7 @@ const APIKeyList = (props) => {
         <Grid item xs={widths[6]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Action</Box></Grid>
       </Grid>
       {state.map((item, index) => 
-        <Grid container  className={classes.rowDataHeader} key={index}>
+        <Grid container className={classes.rowDataHeader} key={index}>
           <Grid item xs={widths[0]} className={clsx(classes.rowData)}>
             {item.apiKey.apiKeyString}
           </Grid>
@@ -82,12 +85,22 @@ const APIKeyList = (props) => {
             <Box textAlign={'center'}>{item.maxQuota}</Box>
           </Grid>
           <Grid item xs={widths[6]} className={classes.rowData} >
-            <Box textAlign={'center'}><Box component='span' className={classes.link}>Details</Box>
+            <Box textAlign={'center'}>
+              <Box onClick={() => {
+                setSelectedData(item);
+                setOpenViewModal(true);
+              }} component='span' className={classes.link}>Details</Box>
             </Box>
           </Grid>
         </Grid>
       )}
+      {!state.length && <Empty 
+        title='No api key created' 
+        subtitle='Please create api key.' 
+        icon={<i className="fa fa-ban"></i>}/>
+      }
     </Paper>
+    {isOpenViewModal && <ViewAPIKey data={selectedData} onClose={() => setOpenViewModal(false)}/>}
     </Box>
   )
 }

@@ -13,9 +13,10 @@ import {Box, Grid} from '@mui/material';
 import axios from 'axios';
 
 // COMPONENT IMPORT
-import {Paper} from '../../../../../../atom';
+import {Paper, Empty} from '../../../../../../atom';
 import {LIST_CONFIG_KONGHQ, JSONHeader, originSource} from '../../../../../../../api/constants';
 import {useUser} from '../../../../../../../contexts/userContext';
+import ViewConfig from './viewConfig';
 
 // DATA
 import listData from '../../mockdata/configList.json'
@@ -29,6 +30,8 @@ const ConfigList = (props) => {
   const widths = [2, 2, 2, 2, 2, 2]
 
   // DECLARE STATE
+  const [selectedData, setSelectedData] = useState(listData[0]);
+  const [isOpenViewModal, setOpenViewModal] = useState(false);
   const { state: userState } = useUser();
   const [state, setState] = useState([]);
 
@@ -43,6 +46,11 @@ const ConfigList = (props) => {
     });
     setState(response.data?.result || []);
   };
+
+  const openViewConfigModal = (obj) => {
+    setSelectedData(obj);
+    setOpenViewModal(true);
+  }
 
   useEffect(() => {
     getAllConfig();
@@ -63,27 +71,33 @@ const ConfigList = (props) => {
       {state.map((item, index) => 
         <Grid container  className={classes.rowDataHeader} key={index}>
           <Grid item xs={widths[0]} className={clsx(classes.rowData)}>
-            <Box component='span'>SD39JSD</Box>
+            <Box component='span'>{item?.identifier || 'NA'}</Box>
           </Grid>
           <Grid item xs={widths[1]} className={classes.rowData}>
-            <Box component='span' className={classes.link}>Script file</Box>
+            <Box component='span' onClick={() => openViewConfigModal(item)} className={classes.link}>Script file</Box>
           </Grid>
           <Grid item xs={widths[2]} className={classes.rowData}>
-            <Box component='span' className={classes.link}>Config file</Box>
+            <Box component='span' onClick={() => openViewConfigModal(item)} className={classes.link}>Config file</Box>
           </Grid>
           <Grid item xs={widths[3]} className={classes.rowData}>
-            <Box component='span' className={classes.link}>Validation file</Box>
+            <Box component='span' onClick={() => openViewConfigModal(item)} className={classes.link}>Validation file</Box>
           </Grid>
           <Grid item xs={widths[4]} className={classes.rowData}>
-            <Box textAlign={'center'}>Pass</Box>
+            <Box textAlign={'center'}>{item.validationOk ? 'Success' : 'Failed'}</Box>
           </Grid>
           <Grid item xs={widths[5]} className={classes.rowData} >
-            <Box textAlign={'center'}><Box component='span' className={classes.link}>Details</Box>
+            <Box onClick={() => openViewConfigModal(item)} textAlign={'center'}><Box component='span' className={classes.link}>Details</Box>
             </Box>
           </Grid>
         </Grid>
       )}
+      {!state.length && <Empty 
+        title='No config created' 
+        subtitle='Please create config.' 
+        icon={<i className="fa fa-ban"></i>}/>
+      }
     </Paper>
+    {isOpenViewModal && <ViewConfig data={selectedData} onClose={() => setOpenViewModal(false)}/>}
     </Box>
   )
 }

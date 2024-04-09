@@ -28,7 +28,8 @@ const FromField = (props) => {
     const {
         label, 
         value,
-        canCopy,
+        canCopy = false,
+        canMask = false,
         mask,
     } = props;
     const maskedData = "*".repeat(props.value.length);
@@ -39,7 +40,7 @@ const FromField = (props) => {
             <Box className={classes.label}>{label}</Box>
             <Box className={classes.value}>
                 <Box flex={1}>{mask && isMasked ?  maskedData :  value}</Box>
-                <Box className={classes.control}>{isMasked ? <i className={clsx(classes.eyeIcon, "far fa-eye-slash")} onClick={() => setMasked(false)}></i> : <i className={clsx(classes.eyeIcon, "far fa-eye")} onClick={() => setMasked(true)}></i>}</Box>
+                {canMask && <Box className={classes.control}>{isMasked ? <i className={clsx(classes.eyeIcon, "far fa-eye-slash")} onClick={() => setMasked(false)}></i> : <i className={clsx(classes.eyeIcon, "far fa-eye")} onClick={() => setMasked(true)}></i>}</Box>}
                 <Box className={classes.control}>{canCopy && <i className={clsx(classes.copyIcon, "far fa-copy")} onClick={() => copyToClipboard(value)}></i>}</Box>
             </Box>
         </Box>

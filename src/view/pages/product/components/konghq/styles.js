@@ -82,6 +82,35 @@ const useStyles = makeStyles((theme) => ({
           textDecoration: 'underline',
       }
   },
+  formRow: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    gap: '12px',
+    marginBottom: '24px',
+  },
+  formFieldlBlock: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '12px 8px',
+    background: '#f1f1f1',
+    borderRadius: '4px',
+  },
+  fieldLabel: {
+    maxWidth: "fit-content",
+    fontSize: "13px",
+    marginTop: "-28px",
+    fontWeight: "600",
+    marginBottom: "11px",
+    background: "#f1f1f1",
+    padding: "7px 12px 0 12px",
+    borderRadius: "4px",
+    marginLeft: "8px",
+  },
+  formTextfield: {
+    background: '#fff'
+  },
 }));
   
   export default useStyles;

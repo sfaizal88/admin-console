@@ -2,15 +2,15 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
     emptyContainer: {
-        margin: '100px auto',
+        margin: '70px auto',
         textAlign: 'center'
     },
     iconContainer: {
         color: '#bec3c7',
-        fontSize: '80px',
+        fontSize: '60px',
         fontWeight: 500,
-        width: '150px',
-        height: '150px',
+        width: '80px',
+        height: '80px',
         margin: '0 auto',
         background: '#eff0f6',
         borderRadius: '150px',

@@ -8,15 +8,18 @@ const useStyles = makeStyles((theme) => ({
         transform: 'translate(-50%, -50%)',
         background: '#fff',
         boxShadow: 24,
+        borderRadius: '8px'
     },
     modalSmall: {
         width: 540,
+        borderRadius: '8px',
         [theme.breakpoints.down('sm')]: {
             width: 300,
         }
     },
     modalMedium: {
         minWidth: 700,
+        borderRadius: '8px',
         [theme.breakpoints.down('sm')]: {
             minWidth: '100%',
         }
@@ -34,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
+        borderRadius: '8px',
         [theme.breakpoints.down('sm')]: {
             position: 'fixed',
             top: 0,
@@ -46,8 +50,9 @@ const useStyles = makeStyles((theme) => ({
     },
     modalHeader: {
         padding: '18px 15px',
-        borderBottom: '1px solid #dbdbdb',
+        borderBottom: '1px solid #ecf0f1',
         background: '#fff',
+        borderRadius: '8px 8px 0 0'
     },
     modalTitle: {
         fontSize: '17px',
@@ -57,9 +62,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'flex-end',
         padding: '12px 15px',
-        borderTop: '1px solid #dbdbdb',
+        borderTop: '1px solid #ecf0f1',
         background: '#fff',
         gap: '12px',
+        borderRadius: '0 0 8px 8px'
     },
     btn: {
         [theme.breakpoints.down('sm')]: {
@@ -67,12 +73,13 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     modalMediumContent: {
-        padding: '8px 15px',
-        height: 500,
+        padding: '16px 15px',
+        minHeight: 300,
+        mAXHeight: 500,
         overflow: 'scroll',
     },
     modalLargeContent: {
-        padding: '8px 15px',
+        padding: '16px 15px',
         overflow: 'scroll',
         height: 'auto',
         flex: 1
