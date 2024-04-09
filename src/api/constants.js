@@ -13,6 +13,7 @@ export const REDIRECT_URL = 'https://sfaizal88.github.io/admin-console/';
 // KONGHQ
 export const SET_CONFIG_KONGHQ = "http://34.173.184.152:8000/prompt/set-config";
 export const LIST_CONFIG_KONGHQ = "http://34.173.184.152:8000/prompt/get-all-configs";
+export const GET_CURRENT_CONFIG_KONGHQ = "http://34.173.184.152:8000/prompt/get-current-config";
 export const ADD_API_KEY_KONGHQ = "http://34.173.184.152:8000/scheduler/add";
 export const LIST_API_KEY_KONGHQ = "http://34.173.184.152:8000/scheduler";
 

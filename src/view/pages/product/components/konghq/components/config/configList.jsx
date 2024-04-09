@@ -14,7 +14,7 @@ import axios from 'axios';
 
 // COMPONENT IMPORT
 import {Paper, Empty} from '../../../../../../atom';
-import {LIST_CONFIG_KONGHQ, JSONHeader, originSource} from '../../../../../../../api/constants';
+import {LIST_CONFIG_KONGHQ, JSONHeader, originSource, GET_CURRENT_CONFIG_KONGHQ} from '../../../../../../../api/constants';
 import {useUser} from '../../../../../../../contexts/userContext';
 import ViewConfig from './viewConfig';
 
@@ -47,6 +47,18 @@ const ConfigList = (props) => {
     setState(response.data?.result || []);
   };
 
+  const getCurrentConfig = async () => {
+    const auth = encode(`${userState.user.displayName}:${userState.user.displayName}`);
+    const response = await axios.post(GET_CURRENT_CONFIG_KONGHQ, {
+      headers: {
+      'Content-Type': JSONHeader.headers['Content-Type'],
+      'Access-Control-Allow-Origin': originSource,
+      'Authorization': `Basic ${auth}`
+      }
+    });
+    console.log("Current config: ", response.data);
+  };
+
   const openViewConfigModal = (obj) => {
     setSelectedData(obj);
     setOpenViewModal(true);
@@ -54,6 +66,7 @@ const ConfigList = (props) => {
 
   useEffect(() => {
     getAllConfig();
+    getCurrentConfig();
     // setState(listData.result)
   }, [])
   return (
