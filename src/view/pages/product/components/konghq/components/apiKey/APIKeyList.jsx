@@ -16,6 +16,8 @@ import axios from 'axios';
 import {Paper, Empty} from '../../../../../../atom';
 import {LIST_API_KEY_KONGHQ, JSONHeader, originSource, REMOVE_API_KEY_KONGHQ} from '../../../../../../../api/constants';
 import {useUser} from '../../../../../../../contexts/userContext';
+import useNotification from '../../../../../../../utils/notification';
+import {capitalizeFirstLetter} from '../../../../../../../utils';
 import ViewAPIKey from './viewAPIKey';
 
 // DATA
@@ -25,6 +27,9 @@ import listData from '../../mockdata/apiKeys.json'
 import useStyles from '../../styles';
 
 const APIKeyList = (props) => {
+  // DECLARE NOTIFICATION
+  const setNotification = useNotification();
+
   // DECLARE STYLE
   const classes = useStyles();
   const widths = [2, 2, 2, 2, 1, 1, 2]
@@ -48,16 +53,23 @@ const APIKeyList = (props) => {
   };
 
   const removeAPIKey = async (apiKeyString) => {
-    const response = await axios.post(REMOVE_API_KEY_KONGHQ, {
-      removedApiKey: apiKeyString
-    }, {
-      headers: {
-      'Content-Type': JSONHeader.headers['Content-Type'],
-      'Access-Control-Allow-Origin': originSource,
-      'Authorization': `Basic ${auth}`
+    try {
+      const response = await axios.post(REMOVE_API_KEY_KONGHQ, {
+        removedApiKey: apiKeyString
+      }, {
+        headers: {
+        'Content-Type': JSONHeader.headers['Content-Type'],
+        'Access-Control-Allow-Origin': originSource,
+        'Authorization': `Basic ${auth}`
+        }
+      });
+      console.log("Remove process: ", response);
+    } catch(err) {
+      console.log("Error: ", err);
+      if (err?.message) {
+        setNotification(capitalizeFirstLetter(err.message));
       }
-    });
-    console.log("Remove process: ", response);
+    }
   }
 
   useEffect(() => {
@@ -102,7 +114,7 @@ const APIKeyList = (props) => {
               <Box onClick={() => {
                 setSelectedData(item);
                 setOpenViewModal(true);
-              }} component='span' className={classes.link}>Details</Box> | 
+              }} component='span' className={classes.link}>Details</Box>&nbsp;|&nbsp; 
               <Box color='error' onClick={() => removeAPIKey(item.apiKey.apiKeyString)} component='span' className={classes.link}>Remove</Box>
             </Box>
           </Grid>
